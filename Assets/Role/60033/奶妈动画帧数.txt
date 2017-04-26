@@ -1,0 +1,7 @@
+idle:0-40
+hurt:330-350
+dead:355-390
+run:400-416
+attack:65-95
+attack:100-135
+skill:185-235

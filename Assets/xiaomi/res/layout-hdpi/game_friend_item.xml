@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#fff" >
+    
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:padding="10dp" >
+        <TextView
+            android:id="@+id/rank_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:textSize="20sp"
+            android:text=": ("
+            />
+        <ImageView
+            android:id="@+id/friend_item_iv_profile"
+            android:layout_toRightOf="@id/rank_tv"
+            android:layout_centerVertical="true"
+            android:layout_width="50dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="50dp" />
+        <Button
+            android:id="@+id/message_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_toRightOf="@id/friend_item_iv_profile"
+            android:layout_toLeftOf="@id/message_button" 
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:orientation="vertical"
+            >
+            <TextView
+	            android:id="@+id/friend_item_tv_nickname"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="15sp"
+	            android:textColor="#000"
+	            android:textStyle="bold"
+	            android:singleLine="true" />
+            <TextView
+	            android:id="@+id/friend_item_tv_score"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="20sp"
+	            android:textColor="#000"
+	            android:textStyle="bold"
+	            android:singleLine="true" />
+            <TextView
+	            android:id="@+id/friend_item_tv_userid"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:textSize="16sp"
+	            android:textColor="#000"
+	            android:singleLine="true" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.66dp"
+        android:background="#c2b093"/>
+    <View 
+        android:layout_width="fill_parent"
+        android:layout_height="0.66dp"
+        android:background="#deceb3"/>
+    
+    
+</LinearLayout>

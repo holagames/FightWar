@@ -1,0 +1,44 @@
+{"frames": {
+
+"moto_01.png":
+{
+	"frame": {"x":114,"y":63,"w":108,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":108,"h":59},
+	"sourceSize": {"w":112,"h":59}
+},
+"moto_02.png":
+{
+	"frame": {"x":2,"y":63,"w":110,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":59},
+	"sourceSize": {"w":112,"h":59}
+},
+"moto_03.png":
+{
+	"frame": {"x":114,"y":2,"w":108,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":108,"h":59},
+	"sourceSize": {"w":112,"h":59}
+},
+"moto_04.png":
+{
+	"frame": {"x":2,"y":2,"w":110,"h":59},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":59},
+	"sourceSize": {"w":112,"h":59}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "LoadingMoto.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":128},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a0c276c29f7013cfa6d01bed1c766efe$"
+}
+}

@@ -1,0 +1,6 @@
+ani
+idle:0-40
+attack:50-120
+skill:130-280
+hurt:290-310
+dead:330-438

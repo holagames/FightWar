@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:layout_width="150dip"
+        android:layout_height="135dip"
+        android:layout_centerInParent="true"
+        android:background="@drawable/vivo_dialog_black_bg"
+        android:gravity="center"
+        android:orientation="vertical" >
+
+        <ProgressBar
+            android:layout_width="52dip"
+            android:layout_height="52dip"
+            android:indeterminateDrawable="@drawable/progress_medium" />
+
+        <TextView
+            android:id="@+id/vivo_loading_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="19dip"
+            android:text="正在载入"
+            android:textColor="@color/vivo_title_color"
+            android:textSize="@dimen/vivo_text_size_middle" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,16 @@
+Graves_ani_1
+idle:0-40
+skill:45-77
+attack:180-200
+idle2:135-175
+
+
+Graves_ani_2
+hurt:0-18
+dead:22-49
+run:54-70
+
+
+ani3
+fulu_idle:0-40
+fulu_run:50-74

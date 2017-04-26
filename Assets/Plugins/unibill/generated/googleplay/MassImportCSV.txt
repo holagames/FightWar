@@ -1,0 +1,10 @@
+Product ID,Published State,Purchase Type,Auto Translate,Locale; Title; Description,Auto Fill Prices,Price
+com.qianhuan.yxgsd.ios.d10,published,managed_by_android,false,"en_US;Diamond10;Diamond10",true,1000000
+com.qianhuan.yxgsd.ios.d60,published,managed_by_android,false,"en_US;Diamond60;Diamond60",true,1000000
+com.qianhuan.yxgsd.ios.d300,published,managed_by_android,false,"en_US;Diamond300;Diamond300",true,1000000
+com.qianhuan.yxgsd.ios.d980,published,managed_by_android,false,"en_US;Diamond980;Diamond980",true,1000000
+com.qianhuan.yxgsd.ios.d1980,published,managed_by_android,false,"en_US;Diamond1980;Diamond1980",true,1000000
+com.qianhuan.yxgsd.ios.d3280,published,managed_by_android,false,"en_US;Diamond3280;Diamond3280",true,1000000
+com.qianhuan.yxgsd.ios.d6480,published,managed_by_android,false,"en_US;Diamond6480;Diamond6480",true,1000000
+com.qianhuan.yxgsd.ios.m300,published,managed_by_android,false,"en_US;Month300;Month300",true,1000000
+com.qianhuan.yxgsd.ios.m980,published,managed_by_android,false,"en_US;Month980;Month980",true,1000000

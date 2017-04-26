@@ -1,0 +1,16 @@
+JINX_ANI_1
+idle:0-40
+attack:45-75
+skill:220-280
+run:150-166
+idle2:170-210
+
+
+JINX_ANI_2
+hurt:0-20
+dead:25-72
+
+
+ani3
+fulu_idle:0-40
+fulu_run:50-74

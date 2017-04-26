@@ -1,0 +1,17 @@
+print("This is a script from a file MainGuide")
+
+local function start()
+	print("!!!!callback sucess!!!!込込亜込"..go.name)
+	OpenPanel("MailWindow", true)
+end
+
+function LLL()
+	
+	print("込込込")
+end
+
+function Click()
+	print(1111222222)
+end
+
+local GauideState = 0

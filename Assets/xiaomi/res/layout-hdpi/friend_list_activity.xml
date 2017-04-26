@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFFFF"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/friend_list_activity_tv_friend_type"
+        android:layout_width="fill_parent"
+        android:layout_height="25dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:background="#ffff00"
+        android:textStyle="bold|italic" />
+    
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
+        <EditText
+            android:id="@+id/friend_list_activity_et_search"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="top"
+            android:layout_margin="3dp"
+            android:hint="Input your friend name"
+            android:inputType="text"
+            android:lines="1"
+            android:gravity="center_vertical"
+            android:paddingTop="0dp"
+            android:paddingBottom="0dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="14sp"
+            android:textStyle="bold|italic"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/secondary_text_dark" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal" >
+        <Button
+            android:id="@+id/friend_list_activity_btn_app_friends"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="App friends"
+            android:textColor="#d45b26"
+            android:textSize="14sp" />
+        <Button
+            android:id="@+id/friend_list_activity_btn_friends"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:text="Friends"
+            android:textColor="#d45b26"
+            android:textSize="14sp" />
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,13 @@
+Ani1£º
+idle:0-40
+attack:50-75
+skill:80-135
+
+Ani2:
+hurt:0-20
+dead:40-83
+run:90-106
+
+ani3:
+fulu_idle:0-40
+fulu_run:50-74

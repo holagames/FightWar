@@ -1,0 +1,48 @@
+print("This is a script from a file GuideManager")
+
+--GuideSubState = 0
+PlayerPrefs.SetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"),0)
+StartPosition = Vector3(0,0,0)
+EndPosition = Vector3(0,0,0)
+
+
+function ResetGuide()
+	PlayerPrefs.SetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"),1)
+	PlayerPrefs.SetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"),1)
+end
+
+function SetClickButton(go,dalayTime)
+	LuaDeliver.AddGuideClick(go,dalayTime)
+end
+
+function SetArrow(endPV3,endR)
+	LuaDeliver.AddArrowClick(endPV3,endR)
+end
+
+function SetButtonLoaclPosition(v3)
+	GameObject.Find("GuideButtonPoint").transform.localPosition = v3
+end
+
+function SetButtonPosition(v3)
+	GameObject.Find("GuideButtonPoint").transform.position = v3
+end
+
+function SetActive(go,IsActive)
+	LuaDeliver.SetActive(go,IsActive)
+end
+
+function SetGuiderLocalPosition( PositionV3,RotationV3,TextV3)
+	GameObject.Find("Guider").transform.localPosition=PositionV3
+	GameObject.Find("Guider").transform.localRotation=RotationV3
+	--GameObject.Find("Guider").transform.eulerAngles=RotationV3
+	GameObject.Find("GuideText").transform.localPosition=TextV3
+	--GameObject.Find("GuideText").transform.eulerAngles=RotationV3
+	GameObject.Find("GuideText").transform.localRotation=RotationV3
+end
+
+function SetGuiderText( text )
+	if GameObject.Find("GuideText") ~= nil then
+		textLabel = GameObject.Find("GuideText"):GetComponent("UILabel")
+		textLabel.text=text
+	end
+end

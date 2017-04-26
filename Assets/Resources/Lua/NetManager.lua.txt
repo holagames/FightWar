@@ -1,0 +1,135 @@
+﻿print("This is a script from a file NetManager")
+ActivityAllTime=nil
+ActivityTimeShowWindow=nil
+ActivityTimeShowLabel=nil
+ActivitySendProcess=nil  --再次发送协议后保存
+
+function NetSplit(Code, Content)
+	--print("Lua:"..Code.."#"..Content)
+	local Contents = StrSplit(Content, ';')
+	if Code == "10002" then
+		--NetworkHandler.LuaSendProcess("1003#"..Contents[2]..";")
+	elseif Code == "10004" then
+		local TestGrid = GameObject.Find("TestGrid")
+		--for i = 1, 10 do
+			LuaDeliver.LoadGridPrefab("TestButton", "TestButton"..Contents[1], TestGrid)
+			local TLabel = GameObject.Find("TestButton"..Contents[1].."/Label")
+			local TUILabel = TLabel:GetComponent("UILabel")
+			TUILabel.text = "BBBBBBBB"..Contents[1] 
+		--end
+		local UIGrid = TestGrid:GetComponent("UIGrid")
+		LuaDeliver.GridReposition(TestGrid)
+   elseif Code=="9133" then
+	    SevenDayWindowInfo(Content)
+   elseif Code=="9135" then
+	   if LuaDeliver.GameFindObj("TenCardRewardWindow")~=nil then
+			 DrawTenCardRewardInfo(Contents[1])
+	   else 
+	   if tonumber(Contents[1])==2 then
+		 CharacterRecorder.instance.ActivityRewardIsGet=true
+		 LuaDeliver.EventButtonRedMessage(34,false)		
+	   end 
+	   if tonumber(Contents[1])==1 then 
+		LuaDeliver.EventButtonRedMessage(34,true)
+	   else
+		LuaDeliver.EventButtonRedMessage(34,false)		 
+	   end 
+	  end 
+	elseif Code=="9136" then
+	   CharacterRecorder.instance.ActivityRewardIsGet=true	
+	   SetActive(CaradRewardInfoSureButton,false)
+	   SetActive(CaradRewardIsGetButton,true)
+	   NetworkHandler.LuaSendProcess("9135#;")
+	   LuaDeliver.EventButtonRedMessage(34,false)		
+	elseif Code=="9601" then
+		print("主动通知")
+		if LuaDeliver.GameFindObj("EventWindow")~=nil then
+		  OpenShowActivityButton(Contents)
+		else 
+
+		end
+		CharacterRecorder.instance:ItemFixedListIsOpen(Content)
+		NetworkHandler.instance:ResourceTycoonOpenByProcess_9601(Content)	--yy加,资源大亨是否开启
+	elseif Code=="9602" then	
+		CharacterRecorder.instance:EveryDayPayReward(Contents[4])	
+		if LuaDeliver.GameFindObj("EventWindow")~=nil then
+			ActivityEverydayPayWindowInfo(Contents)
+			ItemFixendButtonRedPoint()
+		end
+
+	elseif Code=="9603" then
+		if tonumber(Contents[1])==1 then
+			LuaDeliver.LuaOpenAdvanceWindow(Contents[4])
+			CharacterRecorder.instance.gold = tonumber(Contents[2])
+			CharacterRecorder.instance.lunaGem = tonumber(Contents[3])
+			LuaDeliver.LuaTopContent()
+			NetworkHandler.LuaSendProcess("9602#"..ActivitySendProcess..";")
+		else 
+			
+		end
+	elseif Code=="9604" then
+		CharacterRecorder.instance:OncePayReward(Contents[3])
+		if LuaDeliver.GameFindObj("EventWindow")~=nil then
+			ActivityPayRewardInfo(Contents)
+			ItemFixendButtonRedPoint()
+		end
+	elseif Code=="9605" then
+		if tonumber(Contents[1])==1 then
+			LuaDeliver.LuaOpenAdvanceWindow(Contents[4])
+			CharacterRecorder.instance.gold = tonumber(Contents[2])
+			CharacterRecorder.instance.lunaGem = tonumber(Contents[3])
+			LuaDeliver.LuaTopContent()
+			NetworkHandler.LuaSendProcess("9604#"..ActivitySendProcess..";")
+		else 
+			
+		end
+	elseif Code=="9606" then
+		ActivityTimelimitedWindowInfo(Contents)
+	elseif Code=="9614" then
+		CharacterRecorder.instance:ChangeItemExchangRedPoint(Contents[2])
+		if LuaDeliver.GameFindObj("EventWindow")~=nil then
+			ActivityExchangeWindowInfo(Contents)
+			ItemFixendButtonRedPoint()
+		end
+
+	elseif Code=="9615" then
+		if tonumber(Contents[1])==1 then
+			LuaDeliver.LuaOpenAdvanceWindow(Contents[4])
+			CharacterRecorder.instance.gold = tonumber(Contents[2])
+			CharacterRecorder.instance.lunaGem = tonumber(Contents[3])
+			LuaDeliver.LuaTopContent()
+			NetworkHandler.LuaSendProcess("9614#"..ActivitySendProcess..";")
+		else 
+			print("222222主动通知")
+			--[[if tonumber(Contents[2])==0 then
+				LuaDeliver.UIManagerOpen("兑换失败")
+			elseif	tonumber(Contents[2])==1 then
+
+			end
+			]]
+			LuaDeliver.UIManagerOpen("兑换物品不足")
+		end
+	else			    
+		NetworkHandler.instance:LuaSplitPack(Code, Content)
+	end
+end
+
+
+function UpdateTimeShow()
+	if LuaDeliver.GameFindObj("SevenDayWindow")~=nil then
+		SevenDayWindowShowTime()
+	elseif LuaDeliver.GameFindObj("ActivityAccumulationWindow")~=nil then
+		ActivityAccumulationShowTime()
+	else
+		ActivityTimelimitedWindowTimeShow(ActivityAllTime,ActivityTimeShowWindow,ActivityTimeShowLabel)
+	end
+end
+
+function OpenActivityWindow()
+	if CharacterRecorder.instance.OpenWindowButtonID~=1 then 
+		ButtonClickSetPromssage(CharacterRecorder.instance.OpenWindowButtonID)
+		GameObject.Find("ActivityLeftButton3"):GetComponent("UIToggle").value = true
+	else
+		OpenTenCardRewardWindow()
+	end
+end

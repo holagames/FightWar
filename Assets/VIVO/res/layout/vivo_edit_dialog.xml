@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/dialog_layout"
+    android:layout_width="360dip"
+    android:layout_height="wrap_content"
+    android:background="#F4F4F4"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/vivo_popup_dialog_top"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+        android:textColor="#343434" />
+
+    <TextView
+        android:id="@+id/dialog_into_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_title"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_marginTop="10dip"
+        android:gravity="center"
+        android:paddingBottom="10dip"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#696969"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/dialog_error_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_into_label"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:gravity="center"
+        android:paddingBottom="10dip"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:visibility="gone" />
+
+    <com.vivo.account.base.Utils.EditTextErrorFixed
+        android:id="@+id/dialog_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_error_label"
+        android:layout_marginBottom="10dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip"
+        android:inputType="textPassword"
+        android:password="true"
+        android:textColor="#343434" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/dialog_input"
+        android:background="@drawable/vivo_popup_dialog_bottom" >
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dip"
+            android:layout_marginLeft="8dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vivo_login_btn"
+            android:singleLine="true"
+            android:text="@string/vivo_ok_label"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/vivo_dialog_button_text"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btn_neutral"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vivo_login_btn"
+            android:text="@string/vivo_question_next"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/vivo_dialog_button_text"
+            android:textSize="16sp"
+            android:visibility="gone" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dip"
+            android:layout_marginRight="8dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/vivo_login_btn"
+            android:text="@string/vivo_cancle"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/vivo_dialog_button_text"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+</RelativeLayout>

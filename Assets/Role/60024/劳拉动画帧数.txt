@@ -1,0 +1,16 @@
+lara_ani
+
+idl:0-40
+attack:200-248
+run:170-186
+skill: 260-338
+
+
+lara_ani2
+hurt:0-20
+dead:30-77
+
+   
+ani3
+fulu_idle:0-40
+fulu_run:50-74

@@ -1,0 +1,44 @@
+{"frames": {
+
+"zdan_00001.png":
+{
+	"frame": {"x":125,"y":123,"w":121,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":8,"w":121,"h":119},
+	"sourceSize": {"w":135,"h":135}
+},
+"zdan_00003.png":
+{
+	"frame": {"x":2,"y":123,"w":121,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":8,"w":121,"h":119},
+	"sourceSize": {"w":135,"h":135}
+},
+"zdan_00004.png":
+{
+	"frame": {"x":125,"y":2,"w":121,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":8,"w":121,"h":119},
+	"sourceSize": {"w":135,"h":135}
+},
+"zdan_00006.png":
+{
+	"frame": {"x":2,"y":2,"w":121,"h":119},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":6,"y":8,"w":121,"h":119},
+	"sourceSize": {"w":135,"h":135}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "fightButton.png",
+	"format": "RGBA8888",
+	"size": {"w":256,"h":256},
+	"scale": "0.75",
+	"smartupdate": "$TexturePacker:SmartUpdate:8effc9b22b0a5f070dbfde2fbcfa2171$"
+}
+}

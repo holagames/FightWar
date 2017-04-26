@@ -1,0 +1,657 @@
+fileFormatVersion: 2
+guid: df2e4ff0cf98651409223d33dc702ddb
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone003
+    100004: Bone003(mirrored)
+    100006: Bone004
+    100008: Bone004(mirrored)
+    100010: Bone006
+    100012: Bone006(mirrored)
+    100014: Bone007
+    100016: Bone007(mirrored)
+    100018: Bone008
+    100020: Bone008(mirrored)
+    100022: Dummy001
+    100024: Dummy002
+    100026: Dummy003
+    100028: Dummy004
+    100030: Dummy005
+    100032: Dummy_ground
+    100034: zhandouji
+    100036: //RootNode
+    100038: whiteflag
+    100040: whiteflag_Bone001
+    100042: whiteflag_Bone002
+    100044: whiteflag_Bone003
+    100046: whiteflag_Bone004
+    100048: whiteflag_Bone005
+    100050: whiteflag_Bone006
+    100052: whiteflag_Bone007
+    100054: whiteflag_Bone008
+    100056: whiteflag_Bone009
+    100058: whiteflag_Bone010
+    100060: whiteflag_Bone011
+    100062: whiteflag_Bone012
+    100064: whiteflag_Bone013
+    100066: whiteflag_Dummy001
+    100068: whiteflag_Dummy002
+    100070: HeroBody
+    400000: Bone001
+    400002: Bone003
+    400004: Bone003(mirrored)
+    400006: Bone004
+    400008: Bone004(mirrored)
+    400010: Bone006
+    400012: Bone006(mirrored)
+    400014: Bone007
+    400016: Bone007(mirrored)
+    400018: Bone008
+    400020: Bone008(mirrored)
+    400022: Dummy001
+    400024: Dummy002
+    400026: Dummy003
+    400028: Dummy004
+    400030: Dummy005
+    400032: Dummy_ground
+    400034: zhandouji
+    400036: //RootNode
+    400038: whiteflag
+    400040: whiteflag_Bone001
+    400042: whiteflag_Bone002
+    400044: whiteflag_Bone003
+    400046: whiteflag_Bone004
+    400048: whiteflag_Bone005
+    400050: whiteflag_Bone006
+    400052: whiteflag_Bone007
+    400054: whiteflag_Bone008
+    400056: whiteflag_Bone009
+    400058: whiteflag_Bone010
+    400060: whiteflag_Bone011
+    400062: whiteflag_Bone012
+    400064: whiteflag_Bone013
+    400066: whiteflag_Dummy001
+    400068: whiteflag_Dummy002
+    400070: HeroBody
+    4300000: zhandouji
+    4300002: whiteflag
+    4300004: HeroBody
+    7400000: idle
+    7400002: attack
+    7400004: skill
+    7400006: hurt
+    7400008: run
+    7400010: "fulu\x1F_idle"
+    7400012: "fulu\x1F_run"
+    9500000: //RootNode
+    13700000: zhandouji
+    13700002: whiteflag
+    13700004: HeroBody
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skill
+      takeName: Take 001
+      firstFrame: 45
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: hurt
+      takeName: Take 001
+      firstFrame: 100
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 125
+      lastFrame: 141
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: "fulu\x1F_idle"
+      takeName: Take 001
+      firstFrame: 150
+      lastFrame: 182
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005/whiteflag_Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005/whiteflag_Bone006/whiteflag_Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011/whiteflag_Bone012
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011/whiteflag_Bone012/whiteflag_Bone013
+        weight: 1
+      - path: whiteflag
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: "fulu\x1F_run"
+      takeName: Take 001
+      firstFrame: 190
+      lastFrame: 222
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003/Dummy002/Bone007/Dummy003/Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone003(mirrored)/Dummy005/Bone007(mirrored)/Dummy004/Bone008(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone004(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006(mirrored)
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005/whiteflag_Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone002/whiteflag_Bone003/whiteflag_Bone004/whiteflag_Bone005/whiteflag_Bone006/whiteflag_Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011/whiteflag_Bone012
+        weight: 1
+      - path: Dummy_ground/Bone001/whiteflag_Dummy001/whiteflag_Bone001/whiteflag_Dummy002/whiteflag_Bone008/whiteflag_Bone009/whiteflag_Bone010/whiteflag_Bone011/whiteflag_Bone012/whiteflag_Bone013
+        weight: 1
+      - path: whiteflag
+        weight: 1
+      - path: zhandouji
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

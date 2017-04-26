@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/titleLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="50dp"
+    android:background="@drawable/bbk_activity_title_bar" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="100dp"
+        android:singleLine="true"
+        android:text="@string/bbk_paytype_title"
+        android:textSize="@dimen/card_pay_title_size" 
+        android:textColor="@color/TextColorBlack"
+        />
+    
+    <Button android:id="@+id/title_recharge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_centerVertical="true" 
+        android:clickable="true"
+        android:text="recharge"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

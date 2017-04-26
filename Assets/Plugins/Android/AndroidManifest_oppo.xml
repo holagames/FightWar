@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.qianhuan.yxgsd.nearme.gamecenter"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+  <uses-sdk
+      android:minSdkVersion="11"
+      android:targetSdkVersion="19" />
+
+  <!-- oppo start -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <uses-permission android:name="android.permission.SEND_SMS" />
+  <uses-permission android:name="android.permission.READ_SMS" />
+  <uses-permission android:name="android.permission.WRITE_SMS" />
+  <uses-permission android:name="android.permission.RECEIVE_SMS" />
+  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.GET_TASKS" />
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+  <!-- oppo end -->
+
+  <supports-screens
+      android:anyDensity="true"
+      android:largeScreens="true"
+      android:normalScreens="true"
+      android:resizeable="true"
+      android:smallScreens="true" />
+  <application
+      android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+      android:icon="@drawable/app_icon"
+      android:label="@string/app_name"
+      android:debuggable="false" >
+
+    <!-- 提供横屏或者竖屏游戏入口 -->
+    <!-- 请在主界面对应的activity上，添加属性android:configChanges="orientation|keyboardHidden|screenSize"
+              ，否则横竖屏发生切换时，activity会重新创建，会引起一些问题。 -->
+    <activity
+        android:name="com.qianhuan.yxgsd.nearme.gamecenter.MainActivity"
+        android:label="@string/app_name"
+        android:screenOrientation="fullSensor"
+        android:launchMode="singleTask"
+        android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
+      </intent-filter>
+
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />
+    </activity>
+    <!--   
+  <application
+      android:allowBackup="true"
+      android:icon="@drawable/ic_launcher">
+    <activity
+        android:name="com.qianhuan.yxgsd.nearme.gamecenter.MainActivity"
+        android:configChanges="keyboardHidden|screenSize|orientation">
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />
+    </activity>
+    
+    -->
+
+    <!-- oppo start -->
+    <!-- nearme game sdk config goes here -->
+    <meta-data
+        android:name="debug_mode"
+        android:value="false" />
+    <!-- 调试开关，发布时候设置false -->
+    <meta-data
+        android:name="is_offline_game"
+        android:value="false" />
+    <!-- true:单机游戏 false:网游 -->
+    <meta-data
+        android:name="app_key"
+        android:value="c9yr9A5Q4FksWs8socsG4gkso" />
+    <!-- appKey -->
+    <activity
+        android:name="com.nearme.game.sdk.component.proxy.ProxyActivity"
+        android:configChanges="keyboardHidden|orientation|screenSize"
+        android:process=":gcsdk"
+        android:theme="@style/Theme_Dialog_Custom" >
+    </activity>
+
+    <service
+        android:name="com.nearme.game.sdk.component.proxy.ProxyApiService"
+        android:priority="1000"
+        android:process=":gcsdk" >
+    </service>
+    <!-- UserCenter SDK Register start -->
+    <receiver
+        android:name="com.nearme.game.sdk.component.proxy.ProxyUserCenterOperateReceiver"
+        android:exported="true"
+        android:process=":gcsdk" >
+      <intent-filter>
+        <action android:name="com.oppo.usercenter.account_login" />
+        <action android:name="com.oppo.usercenter.account_logout" />
+        <action android:name="com.oppo.usercenter.modify_name" />
+      </intent-filter>
+    </receiver>
+    <!-- nearme game sdk config end -->
+    <!-- oppo end -->
+
+  </application>
+
+</manifest>
+
+
+
+

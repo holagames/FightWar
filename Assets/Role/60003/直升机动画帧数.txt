@@ -1,0 +1,11 @@
+idle:0-64
+attack:70-85
+hurt:110-130
+dead:140-160
+run:170-202
+skill:340-422
+BOSS_skill:430-500
+
+
+fulu_idle:510-542
+fulu_run:550-582

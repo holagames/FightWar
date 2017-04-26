@@ -1,0 +1,81 @@
+--print("This is a script from a file MainWindow")
+
+
+function RoleClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("RoleWindow", true)
+end
+
+function TaskClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("TaskWindow", true)
+end
+
+function FriendClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	print(go.transform.name)
+	
+	local tt = GameObject('TT')
+	print(tt.transform.localScale)
+	--go.transform.localPosition = Vector3.zero;
+	--OpenPanel("TaskWindow", true)
+end
+
+function BagClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("BagWindow", true)
+end
+
+function ChallengeClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("ChallengeWindow", true)
+end
+
+function GateClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("GateWindow", true)
+	--NetworkHandler.LuaSendProcess("2001#"..SceneTransformer.instance.NowChapterID..";")
+end
+
+function GachaClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("GachaWindow", true)	
+end
+
+function MailClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("MailWindow", false)	
+end
+
+function HeroInfoClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("InfoWindow",false)
+end
+
+function RankClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	OpenPanel("RankWindow",true)
+end
+
+function ActivityClick(go)
+	print("!!!!callback sucess!!!!"..go.name)
+	--LuaDeliver.OpenSinglePanel("EventWindow",false)
+	NetworkHandler.LuaSendProcess("9601#;")
+	LuaDeliver.OpenSinglePanel("EventWindow",false)
+	LuaDeliver.SetLocalPosition(LuaDeliver.GameFindObj("EventWindow"),Vector3(0,60,0))
+	--OpenShowActivityButton()
+end
+
+LuaDeliver.AddClick(GameObject.Find("EventButton"),"ActivityClick")
+
+
+--LuaDeliver.AddClick(GameObject.Find("RoleButton"), "RoleClick")
+--LuaDeliver.AddClick(GameObject.Find("TaskButton"), "TaskClick")
+--LuaDeliver.AddClick(GameObject.Find("FriendButton"), "FriendClick")
+--LuaDeliver.AddClick(GameObject.Find("BagButton"), "BagClick")
+--LuaDeliver.AddClick(GameObject.Find("ChallengeButton"), "ChallengeClick")
+--LuaDeliver.AddClick(GameObject.Find("GateButton"), "GateClick")
+--LuaDeliver.AddClick(GameObject.Find("GachaButton"), "GachaClick")
+--LuaDeliver.AddClick(GameObject.Find("MailButton"), "MailClick")
+--LuaDeliver.AddClick(GameObject.Find("RankButton"),"RankClick")
+--LuaDeliver.AddClick(GameObject.Find("HeadInfoButton"),"HeroInfoClick")

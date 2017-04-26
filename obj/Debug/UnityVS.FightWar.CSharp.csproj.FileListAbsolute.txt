@@ -1,0 +1,13 @@
+D:\Project\FightWar\obj\Debug\UnityVS.FightWar.CSharp.csprojResolveAssemblyReference.cache
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\Assembly-CSharp.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\Assembly-CSharp.pdb
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\Debuger.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEditor.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEngine.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEngine.UI.dll
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEngine.xml
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEditor.xml
+D:\Project\FightWar\Temp\UnityVS_bin\Debug\UnityEngine.UI.xml
+D:\Project\FightWar\obj\Debug\Assembly-CSharp.dll
+D:\Project\FightWar\obj\Debug\Assembly-CSharp.pdb

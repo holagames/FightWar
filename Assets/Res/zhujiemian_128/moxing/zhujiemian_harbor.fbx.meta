@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: abd734594d1170840980122353fab9f4
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: background_harbor
+    100002: crane
+    100004: Harbor_props_01
+    100006: Harbor_props_02
+    100008: Harbor_props_03
+    100010: Harbor_props_04
+    100012: ice
+    100014: road
+    100016: ship
+    100018: //RootNode
+    100020: Harbor_props_05
+    100022: Harbor_props_06
+    100024: Harbor_props_07
+    100026: Harbor_props_08
+    400000: background_harbor
+    400002: crane
+    400004: Harbor_props_01
+    400006: Harbor_props_02
+    400008: Harbor_props_03
+    400010: Harbor_props_04
+    400012: ice
+    400014: road
+    400016: ship
+    400018: //RootNode
+    400020: Harbor_props_05
+    400022: Harbor_props_06
+    400024: Harbor_props_07
+    400026: Harbor_props_08
+    2300000: background_harbor
+    2300002: crane
+    2300004: Harbor_props_01
+    2300006: Harbor_props_02
+    2300008: Harbor_props_03
+    2300010: Harbor_props_04
+    2300012: ice
+    2300014: road
+    2300016: ship
+    2300018: Harbor_props_05
+    2300020: Harbor_props_06
+    2300022: Harbor_props_07
+    2300024: Harbor_props_08
+    3300000: background_harbor
+    3300002: crane
+    3300004: Harbor_props_01
+    3300006: Harbor_props_02
+    3300008: Harbor_props_03
+    3300010: Harbor_props_04
+    3300012: ice
+    3300014: road
+    3300016: ship
+    3300018: Harbor_props_05
+    3300020: Harbor_props_06
+    3300022: Harbor_props_07
+    3300024: Harbor_props_08
+    4300000: background_harbor
+    4300002: road
+    4300004: Harbor_props_04
+    4300006: Harbor_props_01
+    4300008: ice
+    4300010: Harbor_props_02
+    4300012: Harbor_props_03
+    4300014: ship
+    4300016: crane
+    4300018: Harbor_props_05
+    4300020: Harbor_props_06
+    4300022: Harbor_props_07
+    4300024: Harbor_props_08
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

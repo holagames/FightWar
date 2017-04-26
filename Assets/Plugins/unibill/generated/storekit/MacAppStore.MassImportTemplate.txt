@@ -1,0 +1,10 @@
+SKU	Product ID	Reference Name	Type	Cleared For Sale	Wholesale Price Tier	Displayed Name	Description	Screenshot Path
+	com.qianhuan.yxgsd.ios.d10	com.qianhuan.yxgsd.ios.d10	Consumable	yes	0	Diamond10	Diamond10	
+	com.qianhuan.yxgsd.ios.d60	com.qianhuan.yxgsd.ios.d60	Consumable	yes	0	Diamond60	Diamond60	
+	com.qianhuan.yxgsd.ios.d300	com.qianhuan.yxgsd.ios.d300	Consumable	yes	0	Diamond300	Diamond300	
+	com.qianhuan.yxgsd.ios.d980	com.qianhuan.yxgsd.ios.d980	Consumable	yes	0	Diamond980	Diamond980	
+	com.qianhuan.yxgsd.ios.d1980	com.qianhuan.yxgsd.ios.d1980	Consumable	yes	0	Diamond1980	Diamond1980	
+	com.qianhuan.yxgsd.ios.d3280	com.qianhuan.yxgsd.ios.d3280	Consumable	yes	0	Diamond3280	Diamond3280	
+	com.qianhuan.yxgsd.ios.d6480	com.qianhuan.yxgsd.ios.d6480	Consumable	yes	0	Diamond6480	Diamond6480	
+	com.qianhuan.yxgsd.ios.m300	com.qianhuan.yxgsd.ios.m300	Consumable	yes	0	Month300	Month300	
+	com.qianhuan.yxgsd.ios.m980	com.qianhuan.yxgsd.ios.m980	Consumable	yes	0	Month980	Month980	

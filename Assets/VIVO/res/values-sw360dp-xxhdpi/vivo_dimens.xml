@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="vivo_text_size_small">14sp</dimen>
+    <dimen name="vivo_feed_margin_top">6dp</dimen>
+
+</resources>

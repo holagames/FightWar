@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Game>
+	<Cameras>
+		<Camera CameraID="4001" Remark="front enemy" TargetRule="21" CameraSpeed="1" ZoomAction="115"/>
+		<Camera CameraID="4002" Remark="front enemy" TargetRule="21" CameraSpeed="1" ZoomAction="90"/>
+		<Camera CameraID="4003" Remark="all enemy" TargetRule="9" CameraSpeed="1" ZoomAction="130"/>
+		<Camera CameraID="4004" Remark="self" TargetRule="10" CameraSpeed="1" ZoomAction="90"/>
+		<Camera CameraID="4005" Remark="self" TargetRule="10" CameraSpeed="1" ZoomAction="100"/>
+	</Cameras>
+</Game>

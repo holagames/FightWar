@@ -1,0 +1,52 @@
+{"frames": {
+
+"pyc_00000.png":
+{
+	"frame": {"x":2,"y":138,"w":392,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":392,"h":32},
+	"sourceSize": {"w":400,"h":50}
+},
+"pyc_00002.png":
+{
+	"frame": {"x":2,"y":104,"w":392,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":392,"h":32},
+	"sourceSize": {"w":400,"h":50}
+},
+"pyc_00004.png":
+{
+	"frame": {"x":2,"y":70,"w":392,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":392,"h":32},
+	"sourceSize": {"w":400,"h":50}
+},
+"pyc_00006.png":
+{
+	"frame": {"x":2,"y":36,"w":392,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":392,"h":32},
+	"sourceSize": {"w":400,"h":50}
+},
+"pyc_00008.png":
+{
+	"frame": {"x":2,"y":2,"w":392,"h":32},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":7,"w":392,"h":32},
+	"sourceSize": {"w":400,"h":50}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "HeroTrain.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":256},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:261a9f4e71d75e51724801d7a66d7b2a$"
+}
+}

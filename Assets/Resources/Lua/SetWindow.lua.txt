@@ -1,0 +1,25 @@
+print("This is a script from a file 世界1111")
+
+
+yyyyy = 2
+
+local TestLabel = GameObject.Find("TestLabel")
+local UILabel = TestLabel:GetComponent("UILabel")
+UILabel.text = "RRRRRRRRRRRRRRRRR"
+
+print("CCCCCCCCCCCCCCCCCCCCCCCCCC"..UILabel.text)
+
+local function AClick(go)
+	print("!!!!callback sucess!!!!"..go.name); 
+	UILabel.text = go.name
+
+	print("ttttt"..ttttt)
+end
+
+local function SetClick(go)
+	UILabel.text = go.name
+	OpenPanel("TestWindow", "TestWindow", true)
+end
+
+LuaDeliver.AddClick(GameObject.Find("SetButton"), AClick)
+LuaDeliver.AddClick(GameObject.Find("CloseButton"), SetClick)

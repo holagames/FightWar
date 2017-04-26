@@ -1,0 +1,43 @@
+﻿print("This is a script from a file LuaManager")
+
+luanet.load_assembly("UnityEngine")
+luanet.load_assembly('Assembly-CSharp')
+
+LuaDeliver = luanet.import_type("LuaDeliver")
+CharacterRecorder = luanet.import_type("CharacterRecorder")
+PictureCreater = luanet.import_type("PictureCreater")
+SceneTransformer = luanet.import_type("SceneTransformer")
+NetworkHandler = luanet.import_type("NetworkHandler")
+UIManager = luanet.import_type("UIManager")
+AudioEditer = luanet.import_type("AudioEditer")
+UIRootExtend = luanet.import_type("UIRootExtend")
+
+GameObject = luanet.import_type("UnityEngine.GameObject")
+Transform = luanet.import_type('UnityEngine.Transform')
+Resources = luanet.import_type('UnityEngine.Resources')
+Random = luanet.import_type('UnityEngine.Random')
+PlayerPrefs = luanet.import_type("UnityEngine.PlayerPrefs")
+TextTranslator = luanet.import_type("TextTranslator")
+
+Screen = luanet.import_type('UnityEngine.Screen')
+ScreenValue = ((((Screen.width / 1200) * (Screen.height / 800)) - 1) / 4) + 1
+
+function StrSplit(str, march)
+	local start_idx = 1
+	local length = str:len()
+	local arr = {}
+	for i = 1, length do
+		if str:sub(i, i) == march then
+			arr[#arr + 1] = str:sub(start_idx, i - 1)
+			start_idx = i + 1
+		elseif i == length then
+			arr[#arr + 1] = str:sub(start_idx, length)
+		end
+	end
+
+	return arr
+end
+
+function OpenPanel(name, closeother)
+	LuaDeliver.OpenPanel(name, closeother)
+end

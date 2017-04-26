@@ -1,0 +1,101 @@
+<resources>
+
+    <string name="app_name">应用内支付DEMO</string>
+    <string name="hello_world">此Demo为应用内支付流程演示</string>
+    <string name="button_text_login">登录</string>
+    <string name="button_text_purchase">购买</string>
+    <string name="demo_tip"><Data><![CDATA[<font>当前为</font><font color="#FF0000">%s</font><font>模式</font>]]></Data></string>
+    <string name="demo_tip1"><Data><![CDATA[<font>当前：</font><font color="#FF0000">%s</font>]]></Data></string>
+    <string name="update_me">UPDATE ME</string>
+    <string name="useheart">USEHEART</string>
+    <string name="check_value">Check Value</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="in_app_friends">正在玩游戏的好友</string>
+    <string name="out_app_friends">friend not using this app</string>
+    <string name="should_send_message">Send message like below?</string>
+    
+    <string name="demo_islogin">正在执行，不要重复操作</string>
+    <string name="demo_choess_money">请选择充值金额</string>
+     <string name="demo_pay_amount_1yuan">1元(1米币)</string>
+    <string name="demo_pay_amount_5yuan">5元(5米币)</string>
+    <string name="demo_pay_amount_10yuan">10元(10米币)</string>
+    <string name="demo_pay_amount_50yuan">50元(50米币)</string>
+    <string name="demo_pay_amount_100yuan">100元(100米币)</string>
+    <string name="demo_pay_amount_500yuan">500元(500米币)</string>
+    <string name="demo_input_amount">请输入充值金额</string>
+    <string name="demo_mibi_to_rmb">1米币=1人民币</string>
+    <string name="demo_btn_ok">确定</string>
+    <string name="demo_tip_text">在正式环境中一定要注明米币和人民币的关系</string>
+    <string name="demo_payment_success">购买成功</string>
+    <string name="demo_payment_cancel">取消购买</string>
+    <string name="demo_payment_failde">购买失败</string>
+    <string name="demo_payment_please_login">您还没有登陆，请先登陆</string>
+    
+    <string name="gam_en_loadgameinfo">loadGameInfo</string>
+    <string name="gam_zh_loadgameinfo">初始化</string>
+    
+    <string name="gam_en_loadgameme">loadGameMe</string>
+    <string name="gam_zh_loadgameme">读取个人信息</string>
+    
+    <string name="gam_en_deleteme">deleteMe</string>
+    <string name="gam_zh_deleteme">删除分数</string>
+    
+    <string name="gam_en_useheart">useHeart</string>
+    <string name="gam_zh_useheart">消耗体力</string>
+    
+    <string name="gam_en_updateresult">updateResult</string>
+    <string name="gam_zh_updateresult">上传成绩</string>
+    
+    <string name="gam_en_updateresults">updateResults</string>
+    <string name="gam_zh_updateresults">上传多个成绩</string>
+    
+    <string name="gam_en_syncresult">syncResult</string>
+    <string name="gam_zh_syncresult">上传成绩</string>
+    
+    <string name="gam_en_syncresults">syncResults</string>
+    <string name="gam_zh_syncresults">上传多个成绩</string>
+    
+    <string name="gam_en_loadleaderboard">loadLeaderBoard</string>
+    <string name="gam_zh_loadleaderboard">读取积分榜</string>
+    
+    <string name="gam_en_messageblock">messageBlock</string>
+    <string name="gam_zh_messageblock">是否接受赠送</string>
+    
+    <string name="gam_en_updateme">updateMe</string>
+    <string name="gam_zh_updateme">更新体力</string>
+    
+    <string name="gam_en_friends">friends</string>
+    <string name="gam_zh_friends">好友列表</string>
+    
+    <string name="gam_en_messagebox">messageBox</string>
+    <string name="gam_zh_messagebox">消息中心</string>
+    
+    <string name="gam_en_share">shareToMiTalk</string>
+    <string name="gam_zh_share">分享到米聊</string>
+    
+    <string name="gam_en_invite">invite</string>
+    <string name="gam_zh_invite">邀请好友</string>
+    
+    <string name="gam_en_joinunion">joinUnion</string>
+    <string name="gam_zh_joinunion">加入工会</string>
+    
+    <string name="gam_en_checkjoinedunion">checkJoinedUnion</string>
+    <string name="gam_zh_checkjoinedunion">是否已加入工会</string>
+    
+    <string name="gam_en_subscribevip">subscribeVip</string>
+    <string name="gam_zh_subscribevip">关注服务号</string>
+    
+    <string name="gam_en_checkvipisscubscribed">checkVipIsScubscribed</string>
+    <string name="gam_zh_checkvipisscubscribed">是否已关注服务号</string>
+    
+    <string name="gam_en_openMiTalk">openMiTalk</string>
+    <string name="gam_zh_openMiTalk">打开米聊下载页</string>	
+    
+    <string name="gam_en_groupslist">unionList</string>
+    <string name="gam_zh_groupslist">工会列表</string>	
+    
+    <string name="gam_en_viplist">vipList</string>
+    <string name="gam_zh_viplist">关注列表</string>	
+    
+</resources>

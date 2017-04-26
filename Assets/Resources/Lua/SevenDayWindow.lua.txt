@@ -1,0 +1,36 @@
+﻿print("This is a script from a file 世界")
+
+function OneDay(go)
+     print("打开1日折扣")
+end
+
+function TwoDay(go)
+     print("打开2日折扣")
+end
+
+function ThreeDay(go)
+     print("打开3日折扣")
+end
+
+function FourDay(go)
+     print("打开4日折扣")
+end
+
+function FiveDay(go)
+     print("打开5日折扣")
+end
+function SixDay(go)
+     print("打开6日折扣")
+end
+
+function SevenDay(go)
+     print("打开7日折扣")
+end
+
+LuaDeliver.AddClick(GameObject.Find("OneDay"), "OneDay")
+LuaDeliver.AddClick(GameObject.Find("TwoDay"), "TwoDay")
+LuaDeliver.AddClick(GameObject.Find("ThreeDay"), "ThreeDay")
+LuaDeliver.AddClick(GameObject.Find("FourDay"), "FourDay")
+LuaDeliver.AddClick(GameObject.Find("FiveDay"), "FiveDay")
+LuaDeliver.AddClick(GameObject.Find("SixDay"), "SixDay")
+LuaDeliver.AddClick(GameObject.Find("SevenDay"), "SevenDay")

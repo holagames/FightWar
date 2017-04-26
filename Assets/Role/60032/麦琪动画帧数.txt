@@ -1,0 +1,12 @@
+ani1
+idle:0-40
+attack:50-100
+run:170-186
+skill:250-295
+
+
+ani2
+hurt:0-20
+dead:30-75
+fuluidle:180-220
+fulurun:230-254

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/preference_background_color"
+    android:orientation="vertical" >
+    <include layout="@layout/demo_title" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/BgColor"
+        android:orientation="vertical" >
+        <ListView
+            android:id="@+id/ProductListView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:cacheColorHint="#00000000" >
+        </ListView>
+    </RelativeLayout>
+</LinearLayout>

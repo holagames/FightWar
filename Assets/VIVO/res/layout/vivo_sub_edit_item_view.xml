@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/user_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="50dip"
+            android:layout_marginLeft="20dip"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/sub_account_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dip"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="id"
+                    android:textColor="#333333"
+                    android:textSize="16dp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
+
+                    <TextView
+                        android:id="@+id/sub_account_role"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:text="未获取角色信息"
+                        android:textColor="#90969a"
+                        android:textSize="11.5dp" />
+
+                    <TextView
+                        android:id="@+id/sub_account_level"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:singleLine="true"
+                        android:text="角色等级"
+                        android:textColor="#90969a"
+                        android:textSize="11.5dp" />
+
+                    <TextView
+                        android:id="@+id/loginmsg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dip"
+                        android:singleLine="true"
+                        android:text="一小时前"
+                        android:textColor="#90969a"
+                        android:textSize="11.5dp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/arrow_image"
+            android:layout_width="13dp"
+            android:layout_height="13dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="20dip"
+            android:src="@drawable/vivo_list_item_arrow_selector" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vivo_sub_foot_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="1px"
+        android:layout_marginRight="1px"
+        android:background="@drawable/vivo_sub_account_foot_view_bg"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="50dip"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/vivo_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="19dp"
+                android:text="新建游戏ID"
+                android:textColor="#313131"
+                android:textSize="16dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toRightOf="@+id/vivo_title"
+                android:text="@string/vivo_add_sub_account_des"
+                android:textColor="#90969a"
+                android:textSize="11.5dp" />
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="20dip"
+                android:src="@drawable/vivo_list_item_arrow_add" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/vivo_foot_line"
+        android:layout_width="fill_parent"
+        android:layout_height="1px"
+        android:background="@color/vivo_edit_line_bg_color" />
+
+</LinearLayout>

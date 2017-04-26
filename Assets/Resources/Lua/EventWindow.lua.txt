@@ -1,0 +1,1569 @@
+print("This is a script from a file 活动界面")
+
+local ActivityEventWindow=LuaDeliver.GameFindObj("EventWindow")
+local SevenDayWindow
+local ActivityFoundationWindow
+local ActivityPayRewardWindow
+local TenCardRewardWindow
+local GetPhysicalPowerWindow
+local ActivityTimelimitedWindow
+local ActivityExchangeWindow
+local ActivityEverydayPayWindow
+local ActivityGetVipWindow
+local WeixinWindow
+--七日折扣
+local OneDayToggle
+local TwoDayToggle
+local ThreeDayToggle
+local FourDayToggle
+local FiveDayToggle
+local SixDayToggle
+local SevenDayToggle
+local Dayinfo
+local length
+local SevenDayAllTime
+local GetGeneralItem 
+local BuyGeneralItemID 
+local GetVipItem
+local BuyVipItemID 
+local BuyGeneralItemNumber 
+local BuyVipItemNumber 
+local ActivityGeneralBuyButton
+local ActivityGeneralGetButton
+local ActivityVipBuyButton
+local ActivityVipGetButton
+
+--十次抽卡
+local CardMessgeInfoWindow
+local CardRewardOne
+local CardRewardTwo
+local CardRewardThree
+local CardRewardFour
+local CardChangeHeroID
+local CardSureButton
+local CardCloceButton
+local CardCancelButton
+local CardRewardGetSprite
+local CardRewardGetLabel
+local CardGetReward
+local CardHadReward
+local CardRewardInfoOne
+local CardRewardInfoTwo
+local CardRewardInfoThree
+local CardRewardInfoFour
+local CardCheckRewardInfoWindow
+local CardRewardInfoBackButton
+local CaradRewardInfoSureButton
+local CaradRewardIsGetButton
+local CardRewardInfoSureLabel
+
+
+--累计充值奖励
+local ActivityAccumulationItem
+local ActivityAccumulationTime
+local ActivityAccumulationRewardItem
+
+
+--充值送福利
+local ActivityPayRewardItem
+local ActivityPayRewardTexture
+
+--兑换活动
+local ItemFixedInfoDic={}
+local GotoVipWindowIsTrue=false;
+--所有button按钮
+
+local	 LeftDrawButoton 
+local	 LeftFoundationButton 
+local	 LeftGetVipButton
+local	 ActivityCloseButton=LuaDeliver.GameFindObj("EventWindow/CloseButton")
+local    UpDateScrollViewPositon=false
+--button ID数组
+local    LeftButtonArray={}
+--红点提示
+local	 DrawButotonRedMessage
+local	 GetVipButtonRedPoint
+local	 FoundationButtonRedPoint
+local    isPowerRedPoint
+--buttonList 
+local    ButtonList
+
+--每日充值
+local ActivityEverydayPayDayID
+local   ActivityEverydayPayOpenTypeContents
+local  ActivityEverydayPayOpenContents
+
+function  OpenShowActivityButton(info) --刚开开启活动
+	PlayerPrefs.SetInt("FirstActivities", 1)
+	LuaDeliver.AcivityButtonStatistics("活动")
+	--LuaDeliver.SetLocalPosition(ActivityEventWindow,Vector3(0,60,0))
+	LuaDeliver.UIManagerOpenPanl("SevenDayWindow",false,Vector3(128,-28,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityFoundationWindow",false,Vector3(0,60,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityPayRewardWindow",false,Vector3(0,60,0))
+	LuaDeliver.UIManagerOpenPanl("TenCardRewardWindow",false,Vector3(128,-28,0))
+	LuaDeliver.UIManagerOpenPanl("GetPhysicalPowerWindow",false,Vector3(0,0,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityExchangeWindow",false,Vector3(0,0,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityTimelimitedWindow",false,Vector3(0,0,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityEverydayPayWindow",false,Vector3(0,0,0))
+	LuaDeliver.UIManagerOpenPanl("ActivityGetVipWindow",false,Vector3(0,0,0))
+	LuaDeliver.UIManagerOpenPanl("WeixinWindow",false,Vector3(0,0,0))
+	ButtonList=info
+	--按钮克隆
+	for i=1,#info+1 do 
+	--print("ActivityLeftButton"..i.. wqwq1)
+		if(LuaDeliver.GameFindObj("ActivityLeftButton"..i)) ~=nil then
+			LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("ActivityLeftButton"..i))
+		end
+	end
+	for i=1,#info+1 do
+		LuaDeliver.LoadGridPrefab("ActivityLeftButton","ActivityLeftButton"..i,LuaDeliver.GameFindObj("EventButtonGrid"))
+	end
+	LuaDeliver.GameFindObj("ActivityLeftButton1/label"):GetComponent("UILabel").text="领取体力"
+	LuaDeliver.GameFindObj("ActivityLeftButton1/Button"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","huodongtu18")
+	--LuaDeliver.GameFindObj("ActivityLeftButton1/ChangeButton/label"):GetComponent("UILabel").text="领取体力"
+	for i=2,tonumber(#info+1) do  --#info	
+		print("ssss "..i.."    "..info[i-1])		
+			LuaDeliver.GameFindObj("ActivityLeftButton"..i.."label"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).Name)
+			--LuaDeliver.GameFindObj("ActivityLeftButton"..i.."/ChangeButton/label"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).Name)
+			LeftButtonArray[i-1]=tonumber(info[i-1])	
+			print("huodongtu"..tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).Type) .. "qwqwqwqwaa")
+			LuaDeliver.GameFindObj("ActivityLeftButton"..i.."/Button"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Game","huodongtu"..tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).Type))
+	end
+	for i=2,tonumber(#info+1) do  --#info	
+		print("sssssss"..i)
+		if TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).Title =="0"  then
+			LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("ActivityLeftButton"..i))
+		end
+		if TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(info[i-1])).ActivityID ==150001  then
+			LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("ActivityLeftButton"..i))
+		end
+	end
+	
+	--所有button按钮
+	 LeftDrawButoton =LuaDeliver.GameFindObj("LeftDrawButoton")
+	 LeftFoundationButton =LuaDeliver.GameFindObj("LeftFoundationButton")
+	 LeftGetVipButton=LuaDeliver.GameFindObj("LeftGetVipButton")
+	 ActivityLeftButtonClick()
+
+	--红点提示
+	 isPowerRedPoint=LuaDeliver.GameFindObj("ActivityLeftButton1/RedMessage")
+	 DrawButotonRedMessage=LuaDeliver.GameFindObj("LeftDrawButoton/RedMessage")
+	 FoundationButtonRedPoint=LuaDeliver.GameFindObj("LeftFoundationButton/RedMessage")
+	 GetVipButtonRedPoint=LuaDeliver.GameFindObj("LeftGetVipButton/RedMessage")
+
+
+	SevenDayWindow=LuaDeliver.GameFindObj("SevenDayWindow")
+	ActivityFoundationWindow=LuaDeliver.GameFindObj("ActivityFoundationWindow")
+	ActivityPayRewardWindow=LuaDeliver.GameFindObj("ActivityPayRewardWindow")
+	GetPhysicalPowerWindow=LuaDeliver.GameFindObj("GetPhysicalPowerWindow")
+	ActivityTimelimitedWindow=LuaDeliver.GameFindObj("ActivityTimelimitedWindow")
+    ActivityExchangeWindow=LuaDeliver.GameFindObj("ActivityExchangeWindow")
+	ActivityEverydayPayWindow=LuaDeliver.GameFindObj("ActivityEverydayPayWindow")
+	ActivityGetVipWindow=LuaDeliver.GameFindObj("ActivityGetVipWindow")
+	WeixinWindow=LuaDeliver.GameFindObj("WeixinWindow")
+
+	--十连抽
+	TenCardRewardWindow=LuaDeliver.GameFindObj("TenCardRewardWindow")
+	CardMessgeInfoWindow=LuaDeliver.GameFindObj("TenCardRewardWindow/MessageInfoWindow")
+	--CardRewardGetSprite=LuaDeliver.GameFindObj("TenCardRewardWindow/GetSprite")
+	CardRewardInfoOne=LuaDeliver.GameFindObj("TenCardRewardWindow/CardRewardInfoOne")
+	CardRewardInfoTwo=LuaDeliver.GameFindObj("TenCardRewardWindow/CardRewardInfoTwo")
+	CardRewardInfoThree=LuaDeliver.GameFindObj("TenCardRewardWindow/CardRewardInfoThree")
+	CardRewardInfoFour=LuaDeliver.GameFindObj("TenCardRewardWindow/CardRewardInfoFour")
+	CardCheckRewardInfoWindow=LuaDeliver.GameFindObj("TenCardRewardWindow/CardRewardGrid")
+	CardRewardInfoBackButton=LuaDeliver.GameFindObj("TenCardRewardWindow/CloseButton")
+    CaradRewardInfoSureButton=LuaDeliver.GameFindObj("TenCardRewardWindow/SureButton")
+	--CardRewardInfoSureLabel=LuaDeliver.TransformFindObj("TenCardRewardWindow/SureButton","Label"):GetComponent("UILabel")
+	CaradRewardIsGetButton=LuaDeliver.GameFindObj("TenCardRewardWindow/isGetButton")
+	SetActive(CardRewardInfoBackButton,false)
+	SetActive(CaradRewardInfoSureButton,false)
+	SetActive(CaradRewardIsGetButton,false)
+	--SetActive(CardRewardGetSprite,false)
+	SetActive(CardRewardInfoOne,false)
+	SetActive(CardRewardInfoTwo,false)
+	SetActive(CardRewardInfoThree,false)
+	SetActive(CardRewardInfoFour,false)
+
+	--七日折扣
+	LuaDeliver.AcivityButtonStatistics("每日折扣")
+	OneDayToggle=LuaDeliver.GameFindObj("OneDay/Sprite")
+	TwoDayToggle=LuaDeliver.GameFindObj("TwoDay/Sprite")
+	ThreeDayToggle=LuaDeliver.GameFindObj("ThreeDay/Sprite")
+	FourDayToggle=LuaDeliver.GameFindObj("FourDay/Sprite")
+	FiveDayToggle=LuaDeliver.GameFindObj("FiveDay/Sprite")
+	SixDayToggle=LuaDeliver.GameFindObj("SixDay/Sprite")
+	SevenDayToggle=LuaDeliver.GameFindObj("SevenDay/Sprite")
+	ActivityGeneralBuyButton=LuaDeliver.GameFindObj("GeneralGoods/BuyButton")
+	ActivityGeneralGetButton=LuaDeliver.GameFindObj("GeneralGoods/GetButton")
+	ActivityVipBuyButton=LuaDeliver.GameFindObj("VipGoods/BuyButton")
+	ActivityVipGetButton=LuaDeliver.GameFindObj("VipGoods/GetButton")
+	ActivityVipPiece=LuaDeliver.GameFindObj("VipGoods/Item/SpritePiece")
+
+
+
+	--充值送福利
+	ActivityPayRewardItem=LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture/Scroll View","Item")
+    ActivityPayRewardTexture=LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","HeroTexture")
+
+	--关闭的窗口
+	SetActive(SevenDayWindow,false)	
+	SetActive(ActivityFoundationWindow,false)	
+	SetActive(ActivityPayRewardWindow,false)
+	SetActive(TenCardRewardWindow,false)
+	SetActive(GetPhysicalPowerWindow,false)
+	SetActive(CardMessgeInfoWindow,false)		
+	SetActive(ActivityExchangeWindow,false)	
+	SetActive(ActivityTimelimitedWindow,false)	
+	SetActive(ActivityEverydayPayWindow,false)	
+	SetActive(ActivityGetVipWindow,false)	
+	SetActive(WeixinWindow,false)
+	
+	--开关按钮
+	--LuaDeliver.DestroyGameObjct(LeftDiscountButton)
+
+	--红点开启
+	for i=2,#info+1 do
+		SetActive(LuaDeliver.GameFindObj("ActivityLeftButton"..i.."/RedMessage"),false)
+	end
+	ItemFixendButtonRedPoint()       
+	if CharacterRecorder.instance.ActivityRewardIsGet==false and CharacterRecorder.instance.GuideID[55]==99 then	  
+		SetActive(DrawButotonRedMessage,true)
+	else 
+		SetActive(DrawButotonRedMessage,false)
+	end
+	if CharacterRecorder.instance.isPowerRedPoint==true  then
+		SetActive(isPowerRedPoint,true)
+	else
+		SetActive(isPowerRedPoint,false)
+	end
+	print("ssssssssssssss")
+	if CharacterRecorder.instance.AllRedPoint[33]==true  then
+		print("ssssssssssssss111")
+		SetActive(GetVipButtonRedPoint,true)
+	else
+		SetActive(GetVipButtonRedPoint,false)
+	end
+	SetActive(FoundationButtonRedPoint,false)
+	--SetActive(GetVipButtonRedPoint,false)
+
+	---------------------------------------------------------------------
+	--初始界面问题  七日折扣
+	LuaDeliver.AcivityButtonStatistics("领取体力")  
+	SetActive(GetPhysicalPowerWindow,true)
+	if CharacterRecorder.instance.ActivityRewardIsGet==false then
+		NetworkHandler.LuaSendProcess("9135#;")
+	end
+	if CharacterRecorder.instance.isBenifRedPoint==false or  CharacterRecorder.instance.isFoundationRedPointt==false then
+		NetworkHandler.LuaSendProcess("9608#;")
+		NetworkHandler.LuaSendProcess("9610#;")
+	end
+	if GameObject.Find("GetPhysicalPowerWindow") ~=nil then
+		NetworkHandler.LuaSendProcess("1091#;")
+	end
+	--刷新Grid
+	if CharacterRecorder.instance.ActivityRewardIsGet==true then
+	  LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("LeftDrawButoton"))
+	end
+	if CharacterRecorder.instance.isBenifRedPoint==true  and  CharacterRecorder.instance.isFoundationRedPoint == true then
+	  LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("LeftFoundationButton"))
+	end
+	LuaDeliver.GameFindObj("EventButtonGrid"):GetComponent("UIGrid").repositionNow = true 
+end
+---------------------------------------------------------------------
+--兑换活动红点刷新
+function ItemFixendButtonRedPoint()
+		for i=2,tonumber(#ButtonList+1) do  --#info		
+			if tonumber(ButtonList[i-1])>130000 and  tonumber(ButtonList[i-1])<140000 then
+				for j=1,CharacterRecorder.instance.ItemExchangButtonList.Count do
+					if CharacterRecorder.instance.ItemExchangButtonList[j-1]==tonumber(ButtonList[i-1]) then
+						SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),true);
+						break
+					else
+						SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),false);
+					end
+				end	
+			end		
+			if tonumber(ButtonList[i-1])>120000 and  tonumber(ButtonList[i-1])<130000 then
+				if CharacterRecorder.instance.AllRedPoint[50]==true  then
+					SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),true);						
+				else
+					SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),false);
+				end
+			elseif tonumber(ButtonList[i-1])>140000 and  tonumber(ButtonList[i-1])<150000 then
+				if CharacterRecorder.instance.AllRedPoint[51]==true  then
+					SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),true);						
+				else
+					SetActive(LuaDeliver.TransformFindObj("ActivityLeftButton"..i,"RedMessage"),false);
+				end
+			end
+	end
+
+end
+
+--------------------------------------------------------------------
+--七日折扣
+function SevenDayWindowInfo(info)
+	local Contents = StrSplit(info, ';')
+	Dayinfo = StrSplit(Contents[1], '!')
+	length =#Dayinfo
+	SevenDayAllTime=tonumber(Contents[2])
+	print(".... "..SevenDayAllTime)
+	if SevenDayAllTime>0 then
+		SetActive(OneDayToggle,false)
+		SetActive(TwoDayToggle,false)
+		SetActive(ThreeDayToggle,false)
+		SetActive(FourDayToggle,false)
+		SetActive(FiveDayToggle,false)
+		SetActive(SixDayToggle,false)
+		SetActive(SevenDayToggle,false)
+		LuaDeliver.TransformFindObj("SevenDayWindow","Texture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou ditiao2")
+		LuaDeliver.TransformFindObj("SevenDayWindow","BG"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou dadi")
+		LuaDeliver.TransformFindObj("SevenDayWindow","VipGoods"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou kuang3")
+		LuaDeliver.TransformFindObj("SevenDayWindow","GeneralGoods"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou kuang4")
+		if ((tonumber(length)/2)==1) then
+			ShowBuyGeneralItem(Dayinfo[1])
+			ShowBuyVipItem(Dayinfo[2])
+			SetActive(OneDayToggle,true)
+			LuaDeliver.GameFindObj("OneDay"):GetComponent("UIToggle").value=true
+		elseif ((tonumber(length)/2)==2)then
+			ShowBuyGeneralItem(Dayinfo[3])
+			ShowBuyVipItem(Dayinfo[4])
+			LuaDeliver.GameFindObj("TwoDay"):GetComponent("UIToggle").value=true
+			SetActive(TwoDayToggle,true)
+			LuaDeliver.GameFindObj("TwoDay"):GetComponent("UIToggle").enabled=true
+		elseif ((tonumber(length)/2)==3) then
+			ShowBuyGeneralItem(Dayinfo[5])
+			ShowBuyVipItem(Dayinfo[6])
+			LuaDeliver.GameFindObj("ThreeDay"):GetComponent("UIToggle").value=true
+			SetActive(ThreeDayToggle,true)
+			LuaDeliver.GameFindObj("ThreeDay"):GetComponent("UIToggle").enabled=true
+		elseif ((tonumber(length)/2)==4) then
+			ShowBuyGeneralItem(Dayinfo[7])
+			ShowBuyVipItem(Dayinfo[8])	
+			LuaDeliver.GameFindObj("FourDay"):GetComponent("UIToggle").value=true
+			SetActive(FourDayToggle,true)
+			LuaDeliver.GameFindObj("FourDay"):GetComponent("UIToggle").enabled=true
+		elseif ((tonumber(length)/2)==5)then
+			ShowBuyGeneralItem(Dayinfo[9])
+			ShowBuyVipItem(Dayinfo[10])
+			LuaDeliver.GameFindObj("FiveDay"):GetComponent("UIToggle").value=true
+			SetActive(FiveDayToggle,true)
+			LuaDeliver.GameFindObj("FiveDay"):GetComponent("UIToggle").enabled=true
+		elseif ((tonumber(length)/2)==6) then
+			ShowBuyGeneralItem(Dayinfo[11])
+			ShowBuyVipItem(Dayinfo[12])
+			LuaDeliver.GameFindObj("SixDay"):GetComponent("UIToggle").value=true
+			SetActive(SixDayToggle,true)
+			LuaDeliver.GameFindObj("SixDay"):GetComponent("UIToggle").enabled=true
+		elseif ((tonumber(length)/2)==7) then
+			ShowBuyGeneralItem(Dayinfo[13])
+			ShowBuyVipItem(Dayinfo[14])
+			LuaDeliver.GameFindObj("SevenDay"):GetComponent("UIToggle").value=true
+			SetActive(SevenDayToggle,true)
+			LuaDeliver.GameFindObj("SevenDay"):GetComponent("UIToggle").enabled=true
+		end
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("OneDay"), "ActivityOneDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("TwoDay"),"ActivityTwoDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("ThreeDay"), "ActivityThreeDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("FourDay"), "ActivityFourDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("FiveDay"), "ActivityFiveDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("SixDay"), "ActivitySixDayClick")
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("SevenDay"), "ActivitySevenDayClick")
+		SevenDayWindowShowTime()
+	end 
+end
+
+function ShowBuyGeneralItem(dataSplit)
+	local GeneralSplit = StrSplit(dataSplit, '$')
+	LuaDeliver.GameFindObj("GeneralGoods/OriginalPrice/Label"):GetComponent("UILabel").text = tostring(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).Price)
+	LuaDeliver.GameFindObj("GeneralGoods/CurrentPrice/Label"):GetComponent("UILabel").text = tostring(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).NowPrice)
+	LuaDeliver.GameFindObj("GeneralGoods/Item/number"):GetComponent("UILabel").text =tostring(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).ItemNum)
+	LuaDeliver.GameFindObj("GeneralGoods/Item"):GetComponent("UISprite").spriteName = "Grade" ..TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).ItemID).itemGrade
+    ActivityExchangeAtlas2(LuaDeliver.GameFindObj("GeneralGoods/Item/icon"),TextTranslator.instance:GetItemByItemCode( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(GeneralSplit[1])).ItemID).picID)
+	LuaDeliver.GameFindObj("GeneralGoods/Item/icon"):GetComponent("UISprite").spriteName =tostring(TextTranslator.instance:GetItemByItemCode( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(GeneralSplit[1])).ItemID).picID)
+	LuaDeliver.GameFindObj("GeneralGoods/BuyGeneralNumber"):GetComponent("UILabel").text = "仅限" .. tostring(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).LimitBuyNum).. "人购买（剩余" .. GeneralSplit[3] .. "件)"
+	LuaDeliver.ItemInfoMessage(LuaDeliver.GameFindObj("GeneralGoods/Item"),TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber((GeneralSplit[1]))).ItemID,0)
+	GetGeneralItem=GeneralSplit[2]
+	BuyGeneralItemID=GeneralSplit[1]
+	BuyGeneralItemNumber=tonumber(GeneralSplit[3])
+	     if GeneralSplit[2] == "1" then
+            SetActive(ActivityGeneralGetButton,true)
+            SetActive(ActivityGeneralBuyButton,false)       
+		elseif BuyGeneralItemNumber==0  then
+			 SetActive(ActivityGeneralGetButton,true)
+            SetActive(ActivityGeneralBuyButton,false)  
+        else      
+            SetActive(ActivityGeneralGetButton,false)
+            SetActive(ActivityGeneralBuyButton,true)      
+        end
+	LuaDeliver.AddHotFixClick(ActivityGeneralBuyButton, "ActivityGeneralItemClick")
+	LuaDeliver.AddHotFixClick(ActivityGeneralGetButton, "ActivityGeneralItemClick")
+
+	
+end
+function ShowBuyVipItem(dataSplit)
+	local VipSplit = StrSplit(dataSplit, '$')
+    LuaDeliver.GameFindObj("VipGoods/OriginalPrice/Label"):GetComponent("UILabel").text =tostring( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).Price)
+    LuaDeliver.GameFindObj("VipGoods/CurrentPrice/Label"):GetComponent("UILabel").text = tostring( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).NowPrice)
+    LuaDeliver.GameFindObj("VipGoods/Item/number"):GetComponent("UILabel").text =tostring( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemNum)
+    LuaDeliver.GameFindObj("VipGoods/Item"):GetComponent("UISprite").spriteName = "Grade" .. TextTranslator.instance:GetItemByItemCode( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID).itemGrade
+	ActivityExchangeAtlas2(LuaDeliver.GameFindObj("VipGoods/Item/icon"),TextTranslator.instance:GetItemByItemCode( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID).picID)
+    LuaDeliver.GameFindObj("VipGoods/Item/icon"):GetComponent("UISprite").spriteName =tostring(TextTranslator.instance:GetItemByItemCode( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID).picID)
+	LuaDeliver.GameFindObj("VipGoods/BuyVipNumber"):GetComponent("UILabel").text = "仅限" .. tostring( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).LimitBuyNum) .. "人购买（剩余" .. VipSplit[3] .. "件)"
+    LuaDeliver.GameFindObj("VipGoods/VipLabel"):GetComponent("UILabel").text = "V"..tostring( TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).LimitVip)
+	LuaDeliver.ItemInfoMessage(LuaDeliver.GameFindObj("VipGoods/Item"),TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID,0)
+
+	if tonumber(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID) > 80000 or tonumber(TextTranslator.instance:GetActivityHalfLimitBuyByID(tonumber(VipSplit[1])).ItemID) < 70000 then
+		SetActive(ActivityVipPiece,false)
+	else
+		SetActive(ActivityVipPiece,true)
+	end
+	GetVipItem=VipSplit[2]
+	BuyVipItemID=VipSplit[1]
+	BuyVipItemNumber =tonumber(VipSplit[3])
+	if VipSplit[2] == "1" then
+        SetActive(ActivityVipGetButton,true)
+        SetActive(ActivityVipBuyButton,false)   
+	elseif BuyVipItemNumber==0  then  
+		SetActive(ActivityVipGetButton,true)
+        SetActive(ActivityVipBuyButton,false)    
+    else      
+        SetActive(ActivityVipGetButton,false)
+        SetActive(ActivityVipBuyButton,true)      
+    end
+	LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("VipGoods/BuyButton"), "ActivityVipItemClick")
+
+end
+
+function ActivityGeneralItemClick(go)
+	if SevenDayAllTime<=1 then
+		print("活动时间已经结束")
+	else 
+
+		NetworkHandler.instance:SendProcess("9134#" .. BuyGeneralItemID .. ";")
+	end	
+end
+function ActivityGeneralGetItemClick(go)
+	if SevenDayAllTime<=1 then
+		print("活动时间已经结束")
+	else 
+		if BuyGeneralItemNumber==0 then
+			LuaDeliver.UIManagerOpen("数量不足")
+		else
+			LuaDeliver.UIManagerOpen("已经购买")
+		end
+	end	
+end
+function ActivityVipItemClick(go)
+	if SevenDayAllTime<=1 then
+		print("活动时间已经结束")
+	else 
+		NetworkHandler.instance:SendProcess("9134#" .. BuyVipItemID .. ";")
+	end	
+end
+function ActivityVipGetItemClick(go)
+	if SevenDayAllTime<=1 then
+		print("活动时间已经结束")
+	else 
+		if BuyVipItemNumber==0 then
+			LuaDeliver.UIManagerOpen("数量不足")
+		else
+			LuaDeliver.UIManagerOpen("已经购买")
+		end
+	end	
+end
+function ActivityOneDayClick(go) 
+		ShowBuyGeneralItem(Dayinfo[1])
+		ShowBuyVipItem(Dayinfo[2])
+		SetActive(OneDayToggle,true)
+	end
+function ActivityTwoDayClick(go) 
+		if ((tonumber(length)/2)>=2)then
+			ShowBuyGeneralItem(Dayinfo[3])
+			ShowBuyVipItem(Dayinfo[4])
+			LuaDeliver.GameFindObj("TwoDay"):GetComponent("UIToggle").value=true
+			SetActive(TwoDayToggle,true)
+			LuaDeliver.GameFindObj("TwoDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+function ActivityThreeDayClick(go) 
+		if ((tonumber(length)/2)>=3)then
+			ShowBuyGeneralItem(Dayinfo[5])
+			ShowBuyVipItem(Dayinfo[6])
+			LuaDeliver.GameFindObj("ThreeDay"):GetComponent("UIToggle").value=true
+			SetActive(ThreeDayToggle,true)
+			LuaDeliver.GameFindObj("ThreeDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+function ActivityFourDayClick(go) 
+		if ((tonumber(length)/2)>=4)then
+			ShowBuyGeneralItem(Dayinfo[7])
+			ShowBuyVipItem(Dayinfo[8])
+			LuaDeliver.GameFindObj("FourDay"):GetComponent("UIToggle").value=true
+			SetActive(FourDayToggle,true)
+			LuaDeliver.GameFindObj("FourDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+function ActivityFiveDayClick(go) 
+		if ((tonumber(length)/2)>=5)then
+			ShowBuyGeneralItem(Dayinfo[9])
+			ShowBuyVipItem(Dayinfo[10])
+			LuaDeliver.GameFindObj("FiveDay"):GetComponent("UIToggle").value=true
+			SetActive(FiveDayToggle,true)
+			LuaDeliver.GameFindObj("FiveDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+function ActivitySixDayClick(go)
+		if ((tonumber(length)/2)>=6)then
+			ShowBuyGeneralItem(Dayinfo[11])
+			ShowBuyVipItem(Dayinfo[12])
+			LuaDeliver.GameFindObj("SixDay"):GetComponent("UIToggle").value=true
+			SetActive(SixDayToggle,true)
+			LuaDeliver.GameFindObj("SixDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+function ActivitySevenDayClick(go) 
+		if ((tonumber(length)/2)>=7)then
+			ShowBuyGeneralItem(Dayinfo[13])
+			ShowBuyVipItem(Dayinfo[14])
+			LuaDeliver.GameFindObj("SevenDay"):GetComponent("UIToggle").value=true
+			SetActive(SevenDayToggle,true)
+			LuaDeliver.GameFindObj("SevenDay"):GetComponent("UIToggle").enabled=true
+		else
+			LuaDeliver.UIManagerOpen("活动时间未到")
+		end
+	end
+
+--时间的刷新显示
+function SevenDayWindowShowTime()	
+	if(LuaDeliver.GameFindObj("SevenDayWindow")~=nil) then
+		SevenDayAllTime=SevenDayAllTime-1	
+		LuaDeliver.UpdateShowTime()
+		local dayStr = math.floor(SevenDayAllTime / 86400)
+		local houreStr =math.floor(SevenDayAllTime / 3600 % 24)
+		local miniteStr =math.floor(SevenDayAllTime % 3600 / 60)
+		local secondStr = math.floor(SevenDayAllTime % 60)
+		if dayStr>0 then
+			LuaDeliver.GameFindObj("TimeTexture/DayLabel"):GetComponent("UILabel").text =  dayStr .. "天"
+		else 
+			LuaDeliver.GameFindObj("TimeTexture/DayLabel"):GetComponent("UILabel").text =  "0" .. "天"
+		end
+		
+		LuaDeliver.GameFindObj("TimeTexture/TimeLabel"):GetComponent("UILabel").text = houreStr..":"..miniteStr..":"..secondStr
+	end
+end
+
+
+-------------------------------------------------------------------------------------------------------------------
+function ActivityExchangeAtlas(item ,itemNum)
+    if itemNum >60000 and itemNum<70000 then
+       item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityExchangeWindow","AvatarSprite"):GetComponent("UISprite").atlas
+   else 
+	   item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityExchangeWindow","ItemSprite"):GetComponent("UISprite").atlas
+    end
+end
+function ActivityExchangeAtlas1(item ,itemNum)
+    if itemNum >60000 and itemNum<70000 then
+       item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","AvatarSprite"):GetComponent("UISprite").atlas
+	   else 
+	   item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ItemSprite"):GetComponent("UISprite").atlas
+    end
+end
+function ActivityExchangeAtlas2(item ,itemNum)
+    if itemNum >60000 and itemNum<80000 then
+       item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("SevenDayWindow","AvatarSprite"):GetComponent("UISprite").atlas
+	   else 
+	   item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("SevenDayWindow","ItemSprite"):GetComponent("UISprite").atlas
+    end
+end
+function ActivityExchangeAtlas3(item ,itemNum)
+    if itemNum >60000 and itemNum<70000 then
+       item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityPayRewardWindow","AvatarSprite"):GetComponent("UISprite").atlas
+	   else 
+	   item:GetComponent("UISprite").atlas = LuaDeliver.TransformFindObj("ActivityPayRewardWindow","ItemSprite"):GetComponent("UISprite").atlas
+    end
+end
+-----------------------------------------------------------------------------------------------------------
+--充值活动奖励
+function ActivityPayRewardInfo(dataSplit)
+	 SetActive(ActivityPayRewardItem,false)	
+	 if tonumber(dataSplit[4])==0 then
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointGetButton"),false)
+		LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture/PointBlackButton","Label"):GetComponent("UILabel").text="不可领"
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointBlackButton"),true)
+	 elseif tonumber(dataSplit[4])==1 then 
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointGetButton"),true)
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointBlackButton"),false)
+     else
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointBlackButton"),true)
+		LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture/PointBlackButton","Label"):GetComponent("UILabel").text="已领取"
+		SetActive(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointGetButton"),false)
+	 end
+	 LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","PointGetButton"),"PayRewardItemGetButton6Click")
+	 LuaDeliver.GameFindObj("ActivityPayRewardWindow/Texture/PointLabel"):GetComponent("UILabel").text="当前积分："..dataSplit[1]
+	 LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","HeroTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Loading",tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,5).ItemID1).picID))
+	 print(tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,6).ItemID1).picID))
+	 LuaDeliver.GameFindObj("ActivityPayRewardWindow/Texture/Texture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou ditiao2")
+	 LuaDeliver.GameFindObj("ActivityPayRewardWindow/Texture/ActiveName"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(ActivitySendProcess)).Name)
+	  LuaDeliver.GameFindObj("ActivityPayRewardWindow/Texture/RewardName"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(ActivitySendProcess)).Des)
+	 ActivityTimelimitedWindowTimeShow(dataSplit[2],"ActivityPayRewardWindow", LuaDeliver.GameFindObj("ActivityPayRewardWindow/Texture/TimeRemaining"):GetComponent("UILabel"))
+	 if(ActivityPayRewardWindow~=nil) then		
+		for i = 1,5 do 
+			if LuaDeliver.GameFindObj("PayReward"..i)~=nil then
+				LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("PayReward"..i))
+			end
+		end
+		for i = 1,5 do
+			LuaDeliver.InstantiateObj(ActivityPayRewardItem,LuaDeliver.GameFindObj("PayRewardGrid"),"PayReward"..i)
+			SetActive(ActivityPayRewardItem,false)
+		end
+		LuaDeliver.GameFindObj("PayRewardGrid"):GetComponent("UIGrid").repositionNow = true
+		for i = 1, 5 do
+			LuaDeliver.TransformFindObj("PayReward"..i,"Label"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).Des)
+			SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"BlackButton"),false)
+			SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"GetButton"),true)
+			LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("PayReward"..i,"BlackButton"),"PayRewardItemBlackButtonClick")
+			LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("PayReward"..i,"GetButton"),"PayRewardItemGetButtonClick")
+			if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1,LuaDeliver.TransformFindObj("PayReward"..i,"rewarditem1"),1)==true then
+				LuaDeliver.GameFindObj("PayReward"..i.."rewarditem1"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1).itemGrade)
+				ActivityExchangeAtlas3(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem1","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem1","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem1","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemNum1)
+				ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1,LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem1","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem1","Icon"),TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID1,0)
+			end
+			if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2,LuaDeliver.TransformFindObj("PayReward"..i,"rewarditem2"),1)==true then
+				LuaDeliver.GameFindObj("PayReward"..i.."rewarditem2"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2).itemGrade)
+				ActivityExchangeAtlas3(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem2","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem2","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem2","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemNum2)
+				ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2,LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem2","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem2","Icon"),TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID2,0)
+			end
+			if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3,LuaDeliver.TransformFindObj("PayReward"..i,"rewarditem3"),1)==true then
+				LuaDeliver.GameFindObj("PayReward"..i.."rewarditem3"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3).itemGrade)
+				ActivityExchangeAtlas3(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem3","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem3","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem3","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemNum3)
+				ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3,LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem3","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem3","Icon"),TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID3,0)
+			end
+			if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4,LuaDeliver.TransformFindObj("PayReward"..i,"rewarditem4"),1)==true then
+				LuaDeliver.GameFindObj("PayReward"..i.."rewarditem4"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4).itemGrade)
+				ActivityExchangeAtlas3(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem4","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem4","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4).picID)
+				LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem4","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemNum4)
+				ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4,LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem4","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("PayReward"..i.."/rewarditem4","Icon"),TextTranslator.instance:GetActivityExchangeDicByID(ActivitySendProcess,i).ItemID4,0)
+			end
+		end
+		ActivityTimelimitedWindowTimeShow(tonumber(dataSplit[2]),"ActivityPayRewardWindow",LuaDeliver.TransformFindObj("ActivityPayRewardWindow/Texture","TimeRemaining"):GetComponent("UILabel"))	
+		local   ActivityPayRewardItemButtondataSplit = StrSplit(dataSplit[3],'!')
+		local  ActivityPayRewardItemButtonType
+		for i=1,5 do
+		    ActivityPayRewardItemButtonType=StrSplit(ActivityPayRewardItemButtondataSplit[i],'$')
+			SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"BlackButton"),false)
+			SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"GetButton"),false)
+			SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"GotoButton"),false)
+			if tonumber(ActivityPayRewardItemButtonType[2])==0 then
+				SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"GotoButton"),true)
+			elseif tonumber(ActivityPayRewardItemButtonType[2])==1 then	
+				SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"GetButton"),true)
+				LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("PayReward"..i,"GetButton"),"PayRewardItemGetButton"..i.."Click")
+			elseif tonumber(ActivityPayRewardItemButtonType[2])==2 then
+				SetActive(LuaDeliver.TransformFindObj("PayReward"..i,"BlackButton"),true)
+			end
+			LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("PayReward"..i,"GotoButton"),"PayRewardItemGotoButtonClick")
+			LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("PayReward"..i,"BlackButton"),"PayRewardItemBlackButtonClick")
+		end
+
+	end
+end
+
+function PayRewardItemGetButton1Click()
+	print("发送领取奖励协议1")
+	NetworkHandler.LuaSendProcess("9605#1;")
+end
+function PayRewardItemGetButton2Click()
+	print("发送领取奖励协议2")
+	NetworkHandler.LuaSendProcess("9605#2;")
+end
+function PayRewardItemGetButton3Click()
+	print("发送领取奖励协议3")
+	NetworkHandler.LuaSendProcess("9605#3;")
+end
+function PayRewardItemGetButton4Click()
+	print("发送领取奖励协议4")
+	NetworkHandler.LuaSendProcess("9605#4;")
+end
+function PayRewardItemGetButton5Click()
+	print("发送领取奖励协议5")
+	NetworkHandler.LuaSendProcess("9605#5;")
+end
+function PayRewardItemGetButton6Click()
+	print("发送领取奖励协议6")
+	NetworkHandler.LuaSendProcess("9605#6;")
+end
+function PayRewardItemGotoButtonClick()
+	print("前往充值")
+	LuaDeliver.OpenPanel("VIPShopWindow",true);
+end
+function PayRewardItemBlackButtonClick()
+	LuaDeliver.UIManagerOpen("奖励未到达条件")	
+end
+
+
+
+----------------------------------------------------------------------------------------------------------------------
+--十抽奖励
+function DrawTenCardRewardInfo(dataSplit)
+
+    CardRewardOne=LuaDeliver.GameFindObj("CardRewardOne")
+	CardRewardTwo=LuaDeliver.GameFindObj("CardRewardTwo")
+	CardRewardThree=LuaDeliver.GameFindObj("CardRewardThree")
+	CardRewardFour=LuaDeliver.GameFindObj("CardRewardFour")
+	LuaDeliver.AddHotFixClick(CardRewardOne , "ActivityCardRewardOneClick")
+	LuaDeliver.AddHotFixClick(CardRewardTwo , "ActivityCardRewardTwoClick")
+	LuaDeliver.AddHotFixClick(CardRewardThree , "ActivityCardRewardThreeClick")
+	LuaDeliver.AddHotFixClick(CardRewardFour , "ActivityCardRewardFourClick")
+
+	LuaDeliver.AddHotFixClick(CaradRewardInfoSureButton , "ActivityCardRewardInfoSureButton")
+	LuaDeliver.AddHotFixClick(CardRewardInfoBackButton , "ActivityCardRewardInfoBackButton")
+    CardRewardGetLabel=LuaDeliver.GameFindObj("TenCardRewardWindow/GetLabel"):GetComponent("UILabel")
+	if tonumber(dataSplit)==0  then
+		SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","GetSprite"),false)
+		CardRewardGetLabel.text="精英十连抽0/1"
+	elseif tonumber(dataSplit)==1 then
+		SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","GetSprite"),true)
+		CardGetReward=true
+		LuaDeliver.TransformFindObj("TenCardRewardWindow","GetSprite"):GetComponent("UISprite").spriteName="PVPIntegration2"
+		CardRewardGetLabel.text="精英十连抽1/1,请选择上方英雄。"
+	elseif tonumber(dataSplit)==2 then
+		SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","GetSprite"),true)
+		CardGetReward=false
+		CardHadReward=true
+		if LuaDeliver.GameFindObj("CardRewardGrid")==nil then
+			SetActive(CaradRewardInfoSureButton,false)
+			SetActive(CaradRewardIsGetButton,true)
+		end
+		CharacterRecorder.instance.ActivityRewardIsGet=true
+		LuaDeliver.TransformFindObj("TenCardRewardWindow","GetSprite"):GetComponent("UISprite").spriteName="PVPIntegration1"
+		CardRewardGetLabel.text="精英十连抽1/1"
+	end
+end
+
+function   ActivityCardRewardOneClick()
+	CardChangeHeroID=60013
+	SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","CardRewardInfoOne"),true)
+	if CardGetReward==true then
+		SetActive(CaradRewardInfoSureButton,true)
+		SetActive(CaradRewardIsGetButton,false)
+	elseif  CardHadReward==true  then
+		SetActive(CaradRewardInfoSureButton,false)
+		SetActive(CaradRewardIsGetButton,true)
+	end
+	SetActive( CardRewardInfoBackButton,true)
+	SetActive( CardCheckRewardInfoWindow,false)
+end
+function   ActivityCardRewardTwoClick()
+	CardChangeHeroID=60029
+	SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","CardRewardInfoTwo"),true)
+	if CardGetReward==true then
+		SetActive(CaradRewardInfoSureButton,true)
+		SetActive(CaradRewardIsGetButton,false)
+	elseif  CardHadReward==true  then
+		SetActive(CaradRewardInfoSureButton,false)
+		SetActive(CaradRewardIsGetButton,true)
+	end
+	SetActive( CardRewardInfoBackButton,true)
+	SetActive( CardCheckRewardInfoWindow,false)
+end
+function   ActivityCardRewardThreeClick()
+	CardChangeHeroID=60014
+	SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","CardRewardInfoThree"),true)
+	if CardGetReward==true then
+		SetActive(CaradRewardInfoSureButton,true)
+		SetActive(CaradRewardIsGetButton,false)
+	elseif  CardHadReward==true  then
+		SetActive(CaradRewardInfoSureButton,false)
+		SetActive(CaradRewardIsGetButton,true)
+	end
+	SetActive( CardRewardInfoBackButton,true)
+	SetActive( CardCheckRewardInfoWindow,false)
+end
+function   ActivityCardRewardFourClick()
+	CardChangeHeroID=60011
+	SetActive(LuaDeliver.TransformFindObj("TenCardRewardWindow","CardRewardInfoFour"),true)
+	if CardGetReward==true then
+		SetActive(CaradRewardInfoSureButton,true)
+		SetActive(CaradRewardIsGetButton,false)
+	elseif  CardHadReward==true  then
+		SetActive(CaradRewardInfoSureButton,false)
+		SetActive(CaradRewardIsGetButton,true)
+	end
+	SetActive( CardRewardInfoBackButton,true)
+	SetActive( CardCheckRewardInfoWindow,false)
+end
+
+function   ActivityCardRewardInfoSureButton()
+	if  CardGetReward==true then
+		if CardChangeHeroID==60013 then
+			OpenCardMessgeInfoWindow(1)
+		elseif  CardChangeHeroID==60029 then
+			OpenCardMessgeInfoWindow(2)
+		elseif  CardChangeHeroID==60014 then
+			OpenCardMessgeInfoWindow(3)
+		elseif  CardChangeHeroID==60011 then
+			OpenCardMessgeInfoWindow(4)
+		end
+	elseif  CardHadReward==true then	
+		LuaDeliver.UIManagerOpen("奖励已经领取")
+	else 
+		LuaDeliver.UIManagerOpen("未满足领取条件")
+	end
+end
+function   ActivityCardRewardInfoBackButton()
+	SetActive(CardRewardInfoFour,false)
+	SetActive(CardRewardInfoThree,false)
+	SetActive(CardRewardInfoTwo,false)
+	SetActive(CardRewardInfoOne,false)
+	SetActive(CaradRewardIsGetButton,false)
+	SetActive(CaradRewardInfoSureButton,false)
+	SetActive( CardRewardInfoBackButton,false)
+	SetActive( CardCheckRewardInfoWindow,true)
+end
+
+function  OpenCardMessgeInfoWindow(ID)
+	SetActive(CardMessgeInfoWindow,true)
+	CardSureButton=LuaDeliver.GameFindObj("MessageWindow/SureButton")
+	CardCancelButton=LuaDeliver.GameFindObj("MessageWindow/CancelButton")
+	LuaDeliver.AddHotFixClick(CardSureButton ,"ActivityCardRewardMessgeSureClick")
+	LuaDeliver.AddHotFixClick(CardCancelButton ,"ActivityCardRewardMessgeCloseClick")
+	local CardHeroInfo=LuaDeliver.GameFindObj("MessageWindow/HeroInfo")
+	if ID==1 then
+		CardHeroInfo:GetComponent("UILabel").text="招募橙色英雄".."[古烈]".."到您的敢死队中？"
+
+	 elseif ID==2 then	
+		CardHeroInfo:GetComponent("UILabel").text="招募橙色英雄".."[战壕]".."到您的敢死队中？"
+
+	 elseif ID==3 then	
+		CardHeroInfo:GetComponent("UILabel").text="招募橙色英雄".."[斯内克]".."到您的敢死队中？"
+
+	 elseif ID==4 then
+		CardHeroInfo:GetComponent("UILabel").text="招募橙色英雄".."[EZ]".."到您的敢死队中？"
+	 end	
+end
+
+function   ActivityCardRewardMessgeCloseClick()
+	SetActive(CardMessgeInfoWindow,false)
+end
+
+function   ActivityCardRewardMessgeSureClick()
+	SetActive(CardMessgeInfoWindow,false)
+	NetworkHandler.LuaSendProcess("9136#"..CardChangeHeroID..";")
+	LuaDeliver.GachaAnimation(CardChangeHeroID)
+	SetActive(DrawButotonRedMessage,false)
+	LuaDeliver.MarqueeInfoMessage(CardChangeHeroID)
+end
+----------------------------------------------------------------------------------------------------------------------------
+--限时活动界面
+function ActivityTimelimitedWindowInfo(dataSplit)
+	LuaDeliver.TransformFindObj("ActivityTimelimitedWindow","Texture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","Timelimited_di")
+	LuaDeliver.TransformFindObj("ActivityTimelimitedWindow/Texture","WenTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","Timelimited_wen")
+	LuaDeliver.TransformFindObj("ActivityTimelimitedWindow/Texture","ActivityMessage"):GetComponent("UILabel").text=TextTranslator.instance:GetActivitiesCenterDicByID(ActivitySendProcess).Des	
+	LuaDeliver.TransformFindObj("ActivityTimelimitedWindow/Texture","OpenTime"):GetComponent("UILabel").text=ActivityOpenStartTime(ActivitySendProcess,1)
+	ActivityTimelimitedWindowTimeShow(dataSplit[1],"ActivityTimelimitedWindow",LuaDeliver.TransformFindObj("ActivityTimelimitedWindow/Texture","HadTime"):GetComponent("UILabel"))
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+--通用兑换界面
+function ActivityExchangeWindowInfo(dataSplit)
+
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","TitleTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","zhekou ditiao2")
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","BGTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","hongbao_dadi0")	
+	ActivityTimelimitedWindowTimeShow(dataSplit[1],"ActivityExchangeWindow",LuaDeliver.TransformFindObj("ActivityExchangeWindow","ActivityTime"):GetComponent("UILabel"))
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","ActivityName"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(ActivitySendProcess)).Name)
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","ActivityMessage"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivitiesCenterDicByID(tonumber(ActivitySendProcess)).Des)
+	local ExchangeItem1=LuaDeliver.TransformFindObj("ActivityExchangeWindow/Scroll View","Item1")
+	local ExchangeItem2=LuaDeliver.TransformFindObj("ActivityExchangeWindow/Scroll View","Item2")
+	local ItemFixedSplit=StrSplit(dataSplit[2],'!')
+	local ItemFixedConvertTypeList={}
+	local ItemFixtdDicLength=TextTranslator.instance:GetActivityItemFixedDicLength(ActivitySendProcess,1)
+	for i=1,#ItemFixedInfoDic do
+		ItemFixedInfoDic[i]=nil
+	end
+	for i=1,TextTranslator.instance.ActivityItemFixedList.count do
+		ItemFixedInfoDic[i]=TextTranslator.instance.ActivityItemFixedList[i-1]
+
+	end
+	for i = 1, 50 do
+		if LuaDeliver.GameFindObj("ActivityExchange"..i)~=nil then
+			LuaDeliver.DestroyGameObjct(LuaDeliver.GameFindObj("ActivityExchange"..i))
+		end
+	end
+	for i=1,ItemFixtdDicLength do
+		if tonumber(ItemFixedInfoDic[i].Type)==1 then
+			LuaDeliver.InstantiateObj(ExchangeItem1,LuaDeliver.TransformFindObj("ActivityExchangeWindow/Scroll View","ExchangeGrid"),"ActivityExchange"..i)
+		else 
+		    LuaDeliver.InstantiateObj(ExchangeItem2,LuaDeliver.TransformFindObj("ActivityExchangeWindow/Scroll View","ExchangeGrid"),"ActivityExchange"..i)
+		end
+		ItemFixedConvertTypeList[i]=ItemFixedInfoDic[i].ItemFixedID
+	end
+	SetActive(ExchangeItem1,false)
+	SetActive(ExchangeItem2,false)
+	for i=1,ItemFixtdDicLength  do
+		  if tonumber(ItemFixedInfoDic[i].Type)==1 then
+			ActivityExchangeFourItemInfo(i)
+			SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),true)
+			if ItemFixedInfoDic[i].ConvertType==16 or ItemFixedInfoDic[i].ConvertType==17   then 
+				GotoVipWindowIsTrue=true;
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."GoToButton","Label"):GetComponent("UILabel").text="充值"				
+			elseif ItemFixedInfoDic[i].ConvertType==19  or ItemFixedInfoDic[i].ConvertType==20 then
+				GotoVipWindowIsTrue=false;
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."GoToButton","Label"):GetComponent("UILabel").text="前往"	
+			end
+			LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),"ActivityExchangeItemGoToButtonClick")
+		 else
+			ActivityExchangeFourItemInfo(i)
+			if ActivityItemIsOpenOrDelete(ItemFixedInfoDic[i].Param1,LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item"),1)==true then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].Param1).itemGrade)
+                ActivityExchangeAtlas(LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item","Icon"),TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].Param1).picID)
+			    LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].Param1).picID)
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item","Number"):GetComponent("UILabel").text=tostring(ItemFixedInfoDic[i].Param2)
+				ActivityItemFramgeIsOpen(ItemFixedInfoDic[i].Param1,LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item"),ItemFixedInfoDic[i].Param1,0)
+			end
+			if tonumber(ItemFixedInfoDic[i].Type)==2  then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangSprite"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Game","huodongnew_word1")
+			else
+
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangSprite"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Game","huodongnew_word1")
+			end		
+		end
+		SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GetButton"),false)
+		SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"HadButton"),false)
+		LuaDeliver.TransformFindObj("ActivityExchange"..i,"Label"):GetComponent("UILabel").text=ItemFixedInfoDic[i].Des
+		--LuaDeliver.TransformFindObj("ActivityExchange"..i,"HadButton"):GetComponent("UILabel").text="不可领"
+		LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"):GetComponent("UILabel").text="[00fd86]".."0".."[-]/"..ItemFixedInfoDic[i].ConvertCount
+end
+		print("数组长度".. ItemFixtdDicLength.." "..#ItemFixedSplit)
+		for i=1,ItemFixtdDicLength  do
+				for j=1,#ItemFixedSplit  do
+					--print("小样你进来了嘛".. tonumber(ItemFixedConvertTypeList[i]).." "..tonumber(StrSplit(ItemFixedSplit[j],'$')[1]))
+					if tonumber(ItemFixedConvertTypeList[i])==tonumber(StrSplit(ItemFixedSplit[j],'$')[1]) then					
+						--兑换按钮状态
+						print("兑换状态 "..tonumber(StrSplit(ItemFixedSplit[j],'$')[5]).."           ".. tonumber(StrSplit(ItemFixedSplit[j],'$')[3]))
+						if tonumber(StrSplit(ItemFixedSplit[j],'$')[5])==0 then 
+							if  tonumber(StrSplit(ItemFixedSplit[j],'$')[3])~=401 	then					
+								SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),true)
+								LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),"ActivityExchangeItemGoToButtonClick")
+							else
+								SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GetButton"),true)
+								LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GetButton"),"ActivityExchangeItem"..i.."GetButtonClick")
+							end
+						elseif tonumber(StrSplit(ItemFixedSplit[j],'$')[5])==1 then
+							if tonumber(StrSplit(ItemFixedSplit[j],'$')[3])~=401  then
+								SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),false)
+							end
+				     		SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GetButton"),true)
+							LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GetButton"),"ActivityExchangeItem"..i.."GetButtonClick")
+						else
+							if tonumber(StrSplit(ItemFixedSplit[j],'$')[3])~=401  then
+								SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"GoToButton"),false)
+							end
+						   SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"HadButton"),true)
+						   LuaDeliver.TransformFindObj("ActivityExchange"..i,"HadButton"):GetComponent("UILabel").text="已领取"
+						   SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"),false)
+						end
+						--兑换次数
+						if tonumber(StrSplit(ItemFixedSplit[j],'$')[3])==401 then
+							LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"):GetComponent("UILabel").text="[00fd86]"..StrSplit(ItemFixedSplit[j],'$')[4].."[-]/"..ItemFixedInfoDic[i].ConvertCount								
+						end
+
+					end
+			end
+	end
+	for i=1,ItemFixtdDicLength  do
+		print("sssssssssssssssssssssssssss "..ItemFixedInfoDic[i].ConvertType)
+		if ItemFixedInfoDic[i].ConvertType==16 then 
+			LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"):GetComponent("UILabel").text="[00fd86]"..dataSplit[3].."[-]/"..ItemFixedInfoDic[i].Param1		
+		elseif ItemFixedInfoDic[i].ConvertType==19  or ItemFixedInfoDic[i].ConvertType==20 then
+			LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"):GetComponent("UILabel").text="[00fd86]"..dataSplit[4].."[-]/"..ItemFixedInfoDic[i].Param1							
+		elseif ItemFixedInfoDic[i].ConvertCount==1 then 
+			SetActive(LuaDeliver.TransformFindObj("ActivityExchange"..i,"ExchangeNumber"),false)
+		end
+	end
+	--英雄图片显示
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",60026)
+	for i=1,ItemFixtdDicLength  do
+	print("qrqerqrqrqrqr"..ItemFixedInfoDic[i].ItemID1)
+		if ItemFixedInfoDic[i].ItemID1 >60000 and   ItemFixedInfoDic[i].ItemID1 <70000 then
+			print("wwwwwww")
+			LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID1).picID))
+		elseif ItemFixedInfoDic[i].ItemID1 >70000 and  ItemFixedInfoDic[i].ItemID1 <79999 then
+			print("wwwwwwwq")
+			LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID1).picID))
+		end
+	end
+	--[[
+	if ItemFixedInfoDic[ItemFixtdDicLength].ItemID1 >60000 and   ItemFixedInfoDic[ItemFixtdDicLength].ItemID1 <70000 then
+		LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[ItemFixtdDicLength].ItemID1).picID))
+	elseif ItemFixedInfoDic[ItemFixtdDicLength].ItemID1 >70000 and  ItemFixedInfoDic[ItemFixtdDicLength].ItemID1 <79999 then
+		LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[ItemFixtdDicLength].ItemID1).picID))
+	else 
+		LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").mainTexture=LuaDeliver.ResourcesLoadTexture("Loading",60026)
+	end
+	]]
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture"):MakePixelPerfect()	
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").width=LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").width*0.75
+	LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").height=LuaDeliver.TransformFindObj("ActivityExchangeWindow","HeroTexture"):GetComponent("UITexture").height*0.75	
+
+		LuaDeliver.TransformFindObj("ActivityExchangeWindow/Scroll View","ExchangeGrid"):GetComponent("UIGrid").repositionNow = true
+		if UpDateScrollViewPositon==true then
+			LuaDeliver.TransformFindObj("ActivityExchangeWindow","Scroll View"):GetComponent("UIPanel").clipOffset =Vector3(0, 6, 0)
+			LuaDeliver.TransformFindObj("ActivityExchangeWindow","Scroll View").transform.localPosition =Vector3(-91, -6, 0)
+		end
+		UpDateScrollViewPositon=false
+		--LuaDeliver.ScrollViewResNow(LuaDeliver.TransformFindObj("ActivityExchangeWindow","Scroll View"),2);
+end
+--物品信息
+function ActivityExchangeFourItemInfo(i)
+			if ActivityItemIsOpenOrDelete(ItemFixedInfoDic[i].ItemID1,LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item1"),1)==true then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item1"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID1).itemGrade)
+			  ActivityExchangeAtlas(LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item1","Icon"),TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID1).picID)
+			    LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item1","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID1).picID)
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item1","Number"):GetComponent("UILabel").text=ItemNumberInfo(ItemFixedInfoDic[i].ItemNum1)
+				ActivityItemFramgeIsOpen(ItemFixedInfoDic[i].ItemID1,LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item1","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item1"),ItemFixedInfoDic[i].ItemID1,0)
+			end
+			if ActivityItemIsOpenOrDelete(ItemFixedInfoDic[i].ItemID2,LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item2"),1)==true then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item2"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID2).itemGrade)
+			   ActivityExchangeAtlas(LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item2","Icon"),TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID2).picID)
+			    LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item2","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID2).picID)
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item2","Number"):GetComponent("UILabel").text=ItemNumberInfo(ItemFixedInfoDic[i].ItemNum2)
+				ActivityItemFramgeIsOpen(ItemFixedInfoDic[i].ItemID2,LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item2","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item2"),ItemFixedInfoDic[i].ItemID2,0)
+			end	
+			if ActivityItemIsOpenOrDelete(ItemFixedInfoDic[i].ItemID3,LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item3"),1)==true then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item3"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID3).itemGrade)
+			    ActivityExchangeAtlas(LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item3","Icon"),TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID3).picID)
+			    LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item3","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID3).picID)
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item3","Number"):GetComponent("UILabel").text=ItemNumberInfo(ItemFixedInfoDic[i].ItemNum3)
+				ActivityItemFramgeIsOpen(ItemFixedInfoDic[i].ItemID3,LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item3","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item3"),ItemFixedInfoDic[i].ItemID3,0)
+			end	
+			if ActivityItemIsOpenOrDelete(ItemFixedInfoDic[i].ItemID4,LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item4"),1)==true then
+				LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item4"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID4).itemGrade)
+			   ActivityExchangeAtlas(LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item4","Icon"),TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID4).picID)
+			    LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item4","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(ItemFixedInfoDic[i].ItemID4).picID)
+				LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item4","Number"):GetComponent("UILabel").text=ItemNumberInfo(ItemFixedInfoDic[i].ItemNum4)
+				ActivityItemFramgeIsOpen(ItemFixedInfoDic[i].ItemID4,LuaDeliver.TransformFindObj("ActivityExchange"..i.."/Item4","Framge"))
+				LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityExchange"..i,"Item4"),ItemFixedInfoDic[i].ItemID4,0)
+			end	
+end
+
+--物品数量显示
+function ItemNumberInfo(number)
+	local itemnumber;	
+	if number>9999  then  	  
+		itemnumber=tostring(number/10000).."W"
+	else 
+		itemnumber=number
+	end
+	return itemnumber
+end
+--充值
+function ActivityExchangeItemGoToButtonClick()
+	print("前往充值")
+	if GotoVipWindowIsTrue==true  then
+		LuaDeliver.OpenPanel("VIPShopWindow",true);
+	else 
+		LuaDeliver.OpenPanel("DiamondShopWindow", true);
+	end
+end
+--领取物品
+function ActivityExchangeItem1GetButtonClick()
+	print("发送协议1"..ItemFixedInfoDic[1].ItemFixedID)
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[1].ItemFixedID..";")
+end
+function ActivityExchangeItem2GetButtonClick()
+	print("发送协议2")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[2].ItemFixedID..";")
+end
+function ActivityExchangeItem3GetButtonClick()
+	print("发送协议3")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[3].ItemFixedID..";")
+end
+function ActivityExchangeItem4GetButtonClick()
+	print("发送协议4")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[4].ItemFixedID..";")
+end
+function ActivityExchangeItem5GetButtonClick()
+	print("发送协议5")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[5].ItemFixedID..";")
+end
+function ActivityExchangeItem6GetButtonClick()
+	print("发送协议6")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[6].ItemFixedID..";")
+end
+function ActivityExchangeItem7GetButtonClick()
+	print("发送协议7")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[7].ItemFixedID..";")
+end
+function ActivityExchangeItem8GetButtonClick()
+	print("发送协议8")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[8].ItemFixedID..";")
+end
+function ActivityExchangeItem9GetButtonClick()
+	print("发送协议9")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[9].ItemFixedID..";")
+end
+function ActivityExchangeItem10GetButtonClick()
+	print("发送协议10")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[10].ItemFixedID..";")
+end
+function ActivityExchangeItem11GetButtonClick()
+	print("发送协议11")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[11].ItemFixedID..";")
+end
+function ActivityExchangeItem12GetButtonClick()
+	print("发送协议12")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[12].ItemFixedID..";")
+end
+function ActivityExchangeItem13GetButtonClick()
+	print("发送协议13")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[13].ItemFixedID..";")
+end
+function ActivityExchangeItem14GetButtonClick()
+	print("发送协议14")
+	NetworkHandler.LuaSendProcess("9615#"..ItemFixedInfoDic[14].ItemFixedID..";")
+end
+----------------------------------------------------------------------------------------------------------------------------
+--每日充值
+function ActivityEverydayPayWindowInfo(dataSplit)
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","BGTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Game","everydaypay_di")
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","CostDaimondLabel"):GetComponent("UILabel").text ="今日已充值[3ee817]"..dataSplit[1].."[-]钻石，"..tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(1).Des)
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","FinalLabel"):GetComponent("UILabel").text ="充值5天，就可领取最终大奖"
+	--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GetButton"),false)
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","HeroTexture"):GetComponent("UITexture").mainTexture =LuaDeliver.ResourcesLoadTexture("Loading","60100")
+	print("AAAAAAA "..dataSplit[2])
+	if tonumber(dataSplit[2])==0 then
+		ActivityEverydayPayDayID=1
+	elseif tonumber(dataSplit[2])==5 or tonumber(dataSplit[2])>=7  then
+		ActivityEverydayPayDayID=6
+	else
+		ActivityEverydayPayDayID=dataSplit[2]
+	end
+    ActivityEverydayPayOpenContents = StrSplit(dataSplit[4], '!')
+	ActivityEverydayPayDayItemInfo()
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay1"),"ActivityEverydayPayDay1ButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay2"),"ActivityEverydayPayDay2ButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay3"),"ActivityEverydayPayDay3ButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay4"),"ActivityEverydayPayDay4ButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay5"),"ActivityEverydayPayDay5ButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay6"),"ActivityEverydayPayDay6ButtonClick")
+    LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","ButtonDay6"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(6).ItemID1).itemGrade)
+	ActivityExchangeAtlas1(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/ButtonDay6","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(6).ItemID1).picID)
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/ButtonDay6","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(6).ItemID1).picID)
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/ButtonDay6","Number"):GetComponent("UILabel").text=""               --tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(6).ItemNum1)
+	--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/ButtonDay6","Framge"),false)
+	ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityDayExchangeDicByID(6).ItemID1,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/ButtonDay6","Framge"))
+	LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Slider"):GetComponent("UISlider").value=tonumber(ActivityEverydayPayDayID-1)/5
+	ActivityTimelimitedWindowTimeShow(tonumber(dataSplit[3]),"ActivityEverydayPayWindow",LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","TimeLabel"):GetComponent("UILabel"))	
+end
+
+--五日点击button
+function ActivityEverydayPayDay1ButtonClick()
+	ActivityEverydayPayDayID=1
+	ActivityEverydayPayDayItemInfo(1)
+end
+
+function  ActivityEverydayPayDay2ButtonClick()
+	ActivityEverydayPayDayID=2
+	ActivityEverydayPayDayItemInfo(2)
+end
+
+function  ActivityEverydayPayDay3ButtonClick()
+	ActivityEverydayPayDayID=3
+	ActivityEverydayPayDayItemInfo(3)
+end
+
+function  ActivityEverydayPayDay4ButtonClick()
+	ActivityEverydayPayDayID=4
+	ActivityEverydayPayDayItemInfo(4)
+end
+
+function  ActivityEverydayPayDay5ButtonClick()
+	ActivityEverydayPayDayID=5
+	ActivityEverydayPayDayItemInfo(5)
+end
+
+function  ActivityEverydayPayDay6ButtonClick()
+	ActivityEverydayPayDayID=6
+	ActivityEverydayPayDayItemInfo(6)
+end
+--每日物品显示
+function ActivityEverydayPayDayItemInfo()	
+	if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item1"),1)==true then
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item1"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1).itemGrade)
+		ActivityExchangeAtlas1(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item1","Icon"),TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1).picID)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item1","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1).picID)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item1","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemNum1)
+		--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item1","Framge"),false)
+		ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item1","Framge"))
+		LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item1"),TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID1,0)
+	end
+	if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item2"),1)==true then
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item2"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2).itemGrade)
+		ActivityExchangeAtlas1(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item2","Icon"),tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2).picID))
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item2","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2).picID)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item2","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemNum2)
+		--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item2","Framge"),false)
+		ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item2","Framge"))
+		LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item2"),TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID2,0)
+	end
+	if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item3"),1)==true then
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item3"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3).itemGrade)
+		ActivityExchangeAtlas1(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item3","Icon"),tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3).picID))
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item3","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3).picID)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item3","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemNum3)
+		--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item3","Framge"),false)
+		ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item3","Framge"))
+		LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item3"),TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID3,0)
+	end
+	if ActivityItemIsOpenOrDelete(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item4"),1)==true then
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item4"):GetComponent("UISprite").spriteName="Grade"..tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4).itemGrade)
+		ActivityExchangeAtlas1(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item4","Icon"),tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4).picID))
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item4","Icon"):GetComponent("UISprite").spriteName=tostring(TextTranslator.instance:GetItemByItemCode(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4).picID)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item4","Number"):GetComponent("UILabel").text=tostring(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemNum4)
+		--SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item4","Framge"),false)
+		ActivityItemFramgeIsOpen(TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4,LuaDeliver.TransformFindObj("ActivityEverydayPayWindow/Item4","Framge"))
+		LuaDeliver.ItemInfoMessage(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","Item4"),TextTranslator.instance:GetActivityDayExchangeDicByID(ActivityEverydayPayDayID).ItemID4,0)
+	end
+    ActivityEverydayPayOpenTypeContents = StrSplit(ActivityEverydayPayOpenContents[tonumber(ActivityEverydayPayDayID)],'$')
+	SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GetButton"),false)
+	SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","CantButton"),false)
+	SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GotoButton"),false)
+	print(ActivityEverydayPayOpenTypeContents[1].."  "..ActivityEverydayPayOpenTypeContents[2].." "..ActivityEverydayPayOpenTypeContents[3])
+	if tonumber(ActivityEverydayPayOpenTypeContents[3])==0  then
+		SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GotoButton"),true)
+	elseif tonumber(ActivityEverydayPayOpenTypeContents[3])==1  then
+		SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GetButton"),true)
+	elseif tonumber(ActivityEverydayPayOpenTypeContents[3])==2 then
+		SetActive(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","CantButton"),true)
+		LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","CantButton"):GetComponent("UILabel").text="已领取"
+	end
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GetButton"),"ActivityEverydayPayGetButtonClick")
+	LuaDeliver.AddHotFixClick(LuaDeliver.TransformFindObj("ActivityEverydayPayWindow","GotoButton"),"PayRewardItemGotoButtonClick")
+end
+
+function ActivityEverydayPayGetButtonClick()	
+	print("发送领取日期"..ActivityEverydayPayDayID)
+	NetworkHandler.LuaSendProcess("9603#"..ActivityEverydayPayDayID..";")
+end
+
+----------------------------------------------------------------------------------------------------------------------------
+--通用的时间显示
+function ActivityTimelimitedWindowTimeShow(AllTime,ShowWindow,ShowLabel)	
+	ActivityAllTime=AllTime
+	ActivityTimeShowWindow=ShowWindow
+	ActivityTimeShowLabel=ShowLabel
+	if(GameObject.Find(ActivityTimeShowWindow)~=nil) then
+		ActivityAllTime=ActivityAllTime-1	
+		LuaDeliver.UpdateShowTime()
+		local dayStr = math.floor(ActivityAllTime / 86400)
+		local houreStr =math.floor(ActivityAllTime / 3600 % 24)
+		local miniteStr =math.floor(ActivityAllTime % 3600 / 60)
+		local secondStr = math.floor(ActivityAllTime % 60)
+		if dayStr>0 then
+			ShowLabel.text =  dayStr .. "天"..houreStr..":"..miniteStr..":"..secondStr
+		else 
+			ShowLabel.text =  "0" .. "天"..houreStr..":"..miniteStr..":"..secondStr
+		end	 
+	end
+end
+
+--碎片是否开启
+function ActivityItemFramgeIsOpen(itemid,itemobj)
+	print("ss"..itemid);
+	if itemid<70000  or itemid>=90000  then
+		SetActive(itemobj,false)
+	else 
+		SetActive(itemobj,true)
+	end
+	 if  itemid >=42001 and itemid <=42006  then
+		SetActive(itemobj,true)
+	end
+end
+
+--物品是删除还是关闭
+function ActivityItemIsOpenOrDelete(itemid,itemobj,isOpenID)
+	if itemid~=0 then
+		SetActive(itemobj,true)
+		return true	
+	else
+		if isOpenID==1 then 
+			SetActive(itemobj,false)
+		else
+			LuaDeliver.DestroyGameObjct(itemobj)
+		end
+		return  false
+	end
+end
+--开启和关闭时间显示
+function ActivityOpenStartTime(ActivityID,ShowType)
+	local StartDate=StrSplit(TextTranslator.instance:GetActivitiesCenterDicByID(ActivityID).StartDate,'$')
+	local EndDate=StrSplit(TextTranslator.instance:GetActivitiesCenterDicByID(ActivityID).EndDate,'$')
+	local StartTime=StrSplit(TextTranslator.instance:GetActivitiesCenterDicByID(ActivityID).StartTime,':')
+	local EndTime=StrSplit(TextTranslator.instance:GetActivitiesCenterDicByID(ActivityID).EndTime,':')
+	if ShowType==1 then
+		if EndTime==23 then 
+			return StartDate[1].."年"..StartDate[2].."月"..StartDate[3].."日"..StartTime[1].."时".."--"..EndDate[1].."年"..EndDate[2].."月"..EndDate[3].."日24时"
+		else 
+			return StartDate[1].."年"..StartDate[2].."月"..StartDate[3].."日"..StartTime[1].."时".."--"..EndDate[1].."年"..EndDate[2].."月"..EndDate[3].."日"..EndTime[1].."时"
+		end
+	end
+end
+--左边按钮点击事件
+function ActivityLeftButtonClick()
+	LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("ActivityLeftButton1") , "ActivityPhyPowerWindowClick")
+	LuaDeliver.AddHotFixClick(ActivityCloseButton , "ActivityCloseWindowClick")
+	LuaDeliver.AddHotFixClick(LeftDrawButoton , "ActivityDrawClick")
+	LuaDeliver.AddHotFixClick(LeftFoundationButton , "ActivityFoundationClick")
+	LuaDeliver.AddHotFixClick(LeftGetVipButton , "ActivityGetVipClick")
+
+	for i=1,#LeftButtonArray do
+		LuaDeliver.AddHotFixClick(LuaDeliver.GameFindObj("ActivityLeftButton"..i+1),"ActivityLeftButton"..(i+1).."Click")		
+	end
+
+end
+
+function ActivityCloseWindowClick(go)
+	LuaDeliver.ClosePanel("SevenDayWindow",true)
+	LuaDeliver.ClosePanel("ActivityFoundationWindow",true)
+	LuaDeliver.ClosePanel("ActivityPayRewardWindow",true)
+	LuaDeliver.ClosePanel("TenCardRewardWindow",true)
+	LuaDeliver.ClosePanel("GetPhysicalPowerWindow",true)
+	LuaDeliver.ClosePanel("ActivityExchangeWindow",true)
+	LuaDeliver.ClosePanel("ActivityTimelimitedWindow",true)
+	LuaDeliver.ClosePanel("ActivityEverydayPayWindow",true)
+	LuaDeliver.ClosePanel("ActivityGetVipWindow",true)
+	LuaDeliver.ClosePanel("WeixinWindow",true)
+	LuaDeliver.AddClick(GameObject.Find("EventButton"),"ActivityClick")
+	LuaDeliver.ClosePanel("EventWindow",true)
+end
+--关闭所有窗口
+function CloseAllActivityWindow()
+	 SetActive(TenCardRewardWindow,false)			
+	 SetActive(SevenDayWindow,false)	
+	 SetActive(ActivityFoundationWindow,false)	
+	 SetActive(ActivityPayRewardWindow,false) 
+	 SetActive(ActivityExchangeWindow,false)	
+	 SetActive(ActivityTimelimitedWindow,false)	
+	 SetActive(GetPhysicalPowerWindow,false)
+	 SetActive(ActivityEverydayPayWindow,false)
+	 SetActive(ActivityGetVipWindow,false)
+	 SetActive(WeixinWindow,false)
+end
+function ActivityPhyPowerWindowClick(go)
+	print("打开领取体力")	
+     LuaDeliver.AcivityButtonStatistics("领取体力")  
+	 CloseAllActivityWindow()
+	 SetActive(GetPhysicalPowerWindow,true)
+	 NetworkHandler.LuaSendProcess("1091#;")
+end
+
+function ActivityDrawClick(go)
+     print("打开十连送橙将")	 
+	 OpenTenCardRewardWindow()
+end
+function OpenTenCardRewardWindow()
+	print("打开十连送橙将")	 
+	LuaDeliver.AcivityButtonStatistics("十连送橙将") 
+	CloseAllActivityWindow()
+	SetActive(TenCardRewardWindow,true)				
+	NetworkHandler.LuaSendProcess("9135#;")
+end
+function ActivityFoundationClick(go)
+	print("全民基金")
+	CloseAllActivityWindow()
+	SetActive(ActivityFoundationWindow,true)
+	NetworkHandler.LuaSendProcess("9608#;") 
+end
+function ActivityGetVipClick(go)
+	print("登陆送VIP")
+	CloseAllActivityWindow()
+	SetActive(ActivityGetVipWindow,true)
+	NetworkHandler.LuaSendProcess("9612#;");
+end
+function ActivityLeftButton2Click(go)
+	print("sssssssssss1")
+		 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(1)
+
+end
+function ActivityLeftButton3Click(go)
+	print("sssssssssss2")
+		 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(2)
+
+end
+function ActivityLeftButton4Click(go)
+	print("sssssssssss4")
+		 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(3)
+end
+function ActivityLeftButton5Click(go)
+	print("sssssssssss5")
+		 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(4)
+
+end
+function ActivityLeftButton6Click(go)
+	print("sssssssssss6")
+	CloseAllActivityWindow()
+	ButtonClickSetPromssage(5)
+
+end
+function ActivityLeftButton7Click(go)
+	print("sssssssssss7")
+		 CloseAllActivityWindow()
+	ButtonClickSetPromssage(6)
+
+end
+function ActivityLeftButton8Click(go)
+	print("sssssssssss8")
+		 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(7)
+
+end
+function ActivityLeftButton9Click(go)
+	 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(8)
+
+end
+function ActivityLeftButton10Click(go)
+	 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(9)
+
+end
+function ActivityLeftButton11Click(go)
+	 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(10)
+
+end
+function ActivityLeftButton12Click(go)
+	 CloseAllActivityWindow()	
+	ButtonClickSetPromssage(11)
+
+end
+function ActivityLeftButton13Click(go)
+	 CloseAllActivityWindow()	
+    ButtonClickSetPromssage(12)
+end
+function ActivityLeftButton14Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(13)
+end
+function ActivityLeftButton15Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(14)
+end
+function ActivityLeftButton16Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(15)
+end
+function ActivityLeftButton17Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(16)
+end
+function ActivityLeftButton18Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(17)
+end
+function ActivityLeftButton19Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(18)
+end
+function ActivityLeftButton20Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(19)
+end
+function ActivityLeftButton21Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(20)
+end
+function ActivityLeftButton22Click(go)
+	CloseAllActivityWindow()	
+    ButtonClickSetPromssage(21)
+end
+--button对应的点击事件
+function ButtonClickSetPromssage(ButtonID)
+	print("输入的ID1是1  "..ButtonID)
+	local  NowButtonID
+	if ButtonID>10000 then
+		NowButtonID=ButtonID
+	else 
+		NowButtonID=LeftButtonArray[ButtonID]
+	end
+	print("zhang" .. math.floor(tonumber(NowButtonID)/10000) .."adsadsadsadsa" )
+	print("赋值后ID2是  "..NowButtonID..math.floor(tonumber(NowButtonID)/10000))
+	if 	math.floor(tonumber(NowButtonID)/10000)==11 then				
+		SetActive(SevenDayWindow,true)		
+		LuaDeliver.AcivityButtonStatistics("每日折扣")
+		NetworkHandler.LuaSendProcess("9133#;")
+		print("七日打折")
+	elseif math.floor(tonumber(NowButtonID)/10000)==12  then
+		print("充值活动")
+	    CloseAllActivityWindow()
+		ActivitySendProcess=tonumber(NowButtonID)
+		SetActive(ActivityPayRewardWindow,true)
+		NetworkHandler.LuaSendProcess("9604#"..tonumber(NowButtonID)..";")
+	elseif math.floor(tonumber(NowButtonID)/10000)==13  then
+		print("通用兑换界面")
+		CloseAllActivityWindow()
+		SetActive(ActivityExchangeWindow,true)	
+		UpDateScrollViewPositon=true
+		--LuaDeliver.ScrollViewResNow(LuaDeliver.TransformFindObj("ActivityExchangeWindow","Scroll View"),3)
+		ActivitySendProcess=tonumber(NowButtonID)
+		NetworkHandler.LuaSendProcess("9614#"..tonumber(NowButtonID)..";")
+	elseif math.floor(tonumber(NowButtonID)/10000)==14 then
+		print("每日充值送好礼")
+		CloseAllActivityWindow()
+		SetActive(ActivityEverydayPayWindow,true)
+		ActivitySendProcess=tonumber(NowButtonID)
+		NetworkHandler.LuaSendProcess("9602#"..tonumber(NowButtonID)..";")
+	elseif math.floor(tonumber(NowButtonID)/10000)==15  then
+		print("限时活动")
+		CloseAllActivityWindow()
+		SetActive(ActivityTimelimitedWindow,true)	
+		ActivitySendProcess=tonumber(NowButtonID)
+		NetworkHandler.LuaSendProcess("9606#"..tonumber(NowButtonID)..";")
+	elseif math.floor(tonumber(NowButtonID)/10000)==16  then
+		 print("打开成长基金")	  
+		--[[ CloseAllActivityWindow()
+		 SetActive(ActivityFoundationWindow,true)	
+		 ActivityFoundationInfo()]]
+	elseif math.floor(NowButtonID/10000)==17  then
+
+	elseif math.floor(NowButtonID/10000)==18  then
+
+	elseif math.floor(NowButtonID/10000)==19  then
+
+	elseif math.floor(NowButtonID/10000)==40  then
+	print("限时活动")
+		CloseAllActivityWindow()
+		SetActive(WeixinWindow,true)	
+		ActivitySendProcess=tonumber(NowButtonID)
+	end
+end

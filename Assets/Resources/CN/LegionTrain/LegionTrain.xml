@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="unicode"?>
+<Game>
+	<LegionTrains>
+		<LegionTrain TrainID="1" NeedLevel="1" VipUnLock="99" DiamondCost="0" BonusExp="1" />
+		<LegionTrain TrainID="2" NeedLevel="40" VipUnLock="99" DiamondCost="28" BonusExp="1" />
+		<LegionTrain TrainID="3" NeedLevel="48" VipUnLock="99" DiamondCost="68" BonusExp="1" />
+		<LegionTrain TrainID="4" NeedLevel="56" VipUnLock="99" DiamondCost="108" BonusExp="1" />
+		<LegionTrain TrainID="5" NeedLevel="64" VipUnLock="99" DiamondCost="148" BonusExp="1" />
+		<LegionTrain TrainID="6" NeedLevel="72" VipUnLock="99" DiamondCost="188" BonusExp="1" />
+		<LegionTrain TrainID="7" NeedLevel="0" VipUnLock="3" DiamondCost="228" BonusExp="1" />
+		<LegionTrain TrainID="8" NeedLevel="0" VipUnLock="8" DiamondCost="268" BonusExp="1" />
+	</LegionTrains>
+</Game>

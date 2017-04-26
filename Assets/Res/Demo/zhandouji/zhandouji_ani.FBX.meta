@@ -1,0 +1,569 @@
+fileFormatVersion: 2
+guid: d16d0f14d47b51b4d9b9db319a1ff21a
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone002
+    100004: Bone003
+    100006: Bone004
+    100008: Bone005
+    100010: Bone006
+    100012: Bone007
+    100014: Bone008
+    100016: Dummy001
+    100018: Dummy002
+    100020: Dummy003
+    100022: Dummy004
+    100024: Dummy005
+    100026: Dummy006
+    100028: Dummy007
+    100030: Dummy_ground
+    100032: //RootNode
+    100034: zhandouji_B
+    100036: daodan1
+    100038: daodan2
+    100040: daodan3
+    100042: daodan4
+    100044: Sphere001
+    400000: Bone001
+    400002: Bone002
+    400004: Bone003
+    400006: Bone004
+    400008: Bone005
+    400010: Bone006
+    400012: Bone007
+    400014: Bone008
+    400016: Dummy001
+    400018: Dummy002
+    400020: Dummy003
+    400022: Dummy004
+    400024: Dummy005
+    400026: Dummy006
+    400028: Dummy007
+    400030: Dummy_ground
+    400032: //RootNode
+    400034: zhandouji_B
+    400036: daodan1
+    400038: daodan2
+    400040: daodan3
+    400042: daodan4
+    400044: Sphere001
+    2300000: Sphere001
+    3300000: Sphere001
+    4300000: zhandouji_B
+    4300002: Sphere001
+    7400000: idle
+    7400002: attack
+    7400004: hurt
+    7400006: dead
+    7400008: run
+    7400010: skill
+    7400012: BOSS_skill
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: zhandouji_B
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: hurt
+      takeName: Take 001
+      firstFrame: 110
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: dead
+      takeName: Take 001
+      firstFrame: 140
+      lastFrame: 160
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: run
+      takeName: Take 001
+      firstFrame: 170
+      lastFrame: 200
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 1
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: skill
+      takeName: Take 001
+      firstFrame: 505
+      lastFrame: 560
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002/daodan2
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004/daodan4
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005/daodan3
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003/daodan1
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: BOSS_skill
+      takeName: Take 001
+      firstFrame: 390
+      lastFrame: 495
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Dummy_ground
+        weight: 1
+      - path: Dummy_ground/Bone001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy001/Bone006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy002/Bone007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy003/Bone002/daodan2
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy004/Bone004/daodan4
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy005/Bone005/daodan3
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy006/Bone003/daodan1
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007
+        weight: 1
+      - path: Dummy_ground/Bone001/Dummy007/Bone008
+        weight: 1
+      - path: zhandouji_B
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

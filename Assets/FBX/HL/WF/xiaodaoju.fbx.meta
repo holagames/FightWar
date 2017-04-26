@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: 4cabc051277ae714e9869c7de36d9fc1
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: group
+    100002: pasted__group1
+    100004: pasted__pCylinder4
+    100006: pasted__pCylinder5
+    100008: pasted__pCylinder6
+    100010: pasted__polySurface12
+    100012: pasted__polySurface17
+    100014: polySurface1
+    100016: //RootNode
+    100018: zhusheqi:polySurface1
+    100020: pasted__polySurface27
+    100022: pasted__polySurface28
+    100024: pasted__polySurface31
+    100026: pasted__polySurface32
+    400000: group
+    400002: pasted__group1
+    400004: pasted__pCylinder4
+    400006: pasted__pCylinder5
+    400008: pasted__pCylinder6
+    400010: pasted__polySurface12
+    400012: pasted__polySurface17
+    400014: polySurface1
+    400016: //RootNode
+    400018: zhusheqi:polySurface1
+    400020: pasted__polySurface27
+    400022: pasted__polySurface28
+    400024: pasted__polySurface31
+    400026: pasted__polySurface32
+    2300000: pasted__pCylinder4
+    2300002: pasted__pCylinder5
+    2300004: pasted__pCylinder6
+    2300006: pasted__polySurface12
+    2300008: pasted__polySurface17
+    2300010: polySurface1
+    2300012: zhusheqi:polySurface1
+    2300014: pasted__polySurface27
+    2300016: pasted__polySurface28
+    2300018: pasted__polySurface31
+    2300020: pasted__polySurface32
+    3300000: pasted__pCylinder4
+    3300002: pasted__pCylinder5
+    3300004: pasted__pCylinder6
+    3300006: pasted__polySurface12
+    3300008: pasted__polySurface17
+    3300010: polySurface1
+    3300012: zhusheqi:polySurface1
+    3300014: pasted__polySurface27
+    3300016: pasted__polySurface28
+    3300018: pasted__polySurface31
+    3300020: pasted__polySurface32
+    4300000: zhusheqi:polySurface1
+    4300002: pasted__pCylinder4
+    4300004: pasted__pCylinder5
+    4300006: pasted__pCylinder6
+    4300008: pasted__polySurface12
+    4300010: pasted__polySurface17
+    4300012: polySurface1
+    4300014: pasted__polySurface27
+    4300016: pasted__polySurface28
+    4300018: pasted__polySurface31
+    4300020: pasted__polySurface32
+    9500000: //RootNode
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

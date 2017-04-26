@@ -1,0 +1,16 @@
+Ada_ani_1
+idle:0-40
+skill:250-335
+attack:130-165
+run:170-186
+idle2:200-240
+
+Ada_ani_2
+hurt:0-20
+dead:30-77
+
+renzhi:80-140
+renzhi_hurt:150-170
+
+fulu_idle£¨·ýÂ²´ý»ú£©£º180-220
+fulu_run:230-254

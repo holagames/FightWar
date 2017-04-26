@@ -1,0 +1,1 @@
+D:\Project\FightHero\obj\Debug\UnityVS.FightHero.CSharp.csprojResolveAssemblyReference.cache

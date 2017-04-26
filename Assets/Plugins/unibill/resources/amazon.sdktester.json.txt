@@ -1,0 +1,65 @@
+{
+  "com.qianhuan.yxgsd.ios.d10": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond10",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond10"
+  },
+  "com.qianhuan.yxgsd.ios.d60": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond60",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond60"
+  },
+  "com.qianhuan.yxgsd.ios.d300": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond300",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond300"
+  },
+  "com.qianhuan.yxgsd.ios.d980": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond980",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond980"
+  },
+  "com.qianhuan.yxgsd.ios.d1980": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond1980",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond1980"
+  },
+  "com.qianhuan.yxgsd.ios.d3280": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond3280",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond3280"
+  },
+  "com.qianhuan.yxgsd.ios.d6480": {
+    "itemType": "CONSUMABLE",
+    "description": "Diamond6480",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Diamond6480"
+  },
+  "com.qianhuan.yxgsd.ios.m300": {
+    "itemType": "CONSUMABLE",
+    "description": "Month300",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Month300"
+  },
+  "com.qianhuan.yxgsd.ios.m980": {
+    "itemType": "CONSUMABLE",
+    "description": "Month980",
+    "price": 0.99,
+    "smallIconUrl": "http://example.com",
+    "title": "Month980"
+  }
+}

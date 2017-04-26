@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/preference_background_color"
+    android:orientation="vertical" >
+
+    <include layout="@layout/bbk_payment_title" />
+
+    <LinearLayout
+        android:id="@+id/creditsmain_layoutid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:text="@string/bbk_recharge_type_tip"
+            android:textColor="@color/TextColorBlack"
+            android:textSize="@dimen/text_size_small" />
+
+        <com.bbk.payment.PaymentGridView
+            android:id="@+id/GrilView"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:listSelector="@drawable/bbk_background_down"
+            android:numColumns="3"
+            android:stretchMode="columnWidth" >
+        </com.bbk.payment.PaymentGridView>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/creditsmain_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="10dp" >
+
+            <TextView
+                android:id="@+id/bbk_customor_service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dip"
+                android:layout_marginRight="13dip"
+                android:layout_centerHorizontal="true"
+                android:singleLine="true"
+                android:text="@string/bbk_customer_service"
+                android:textColor="@color/customer_text_tip"
+                android:textSize="@dimen/bbk_customor_size" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,263 @@
+{
+  "iOSSKU": "102",
+  "macAppStoreSKU": "",
+  "androidBillingPlatform": "AmazonAppstore",
+  "GooglePlayPublicKey": "[Your key]",
+  "useAmazonSandbox": true,
+  "UseWP8MockingFramework": false,
+  "useHostedConfig": true,
+  "hostedConfigUrl": "http://example.com/unibillInventory.json",
+  "UseWin8_1Sandbox": true,
+  "samsungAppsMode": "PRODUCTION",
+  "samsungAppsItemGroupId": "",
+  "unibillAnalyticsAppId": "",
+  "unibillAnalyticsAppSecret": "",
+  "purchasableItems": {
+    "com.qianhuan.yxgsd.ios.d10": {
+      "@id": "com.qianhuan.yxgsd.ios.d10",
+      "@purchaseType": "Consumable",
+      "name": "Diamond10",
+      "description": "Diamond10",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {},
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d10"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d60": {
+      "@id": "com.qianhuan.yxgsd.ios.d60",
+      "@purchaseType": "Consumable",
+      "name": "Diamond60",
+      "description": "Diamond60",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d60"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d60"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d300": {
+      "@id": "com.qianhuan.yxgsd.ios.d300",
+      "@purchaseType": "Consumable",
+      "name": "Diamond300",
+      "description": "Diamond300",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d300"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d300"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d980": {
+      "@id": "com.qianhuan.yxgsd.ios.d980",
+      "@purchaseType": "Consumable",
+      "name": "Diamond980",
+      "description": "Diamond980",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d980"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0.0,
+          "screenshotPath": ""
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d1980": {
+      "@id": "com.qianhuan.yxgsd.ios.d1980",
+      "@purchaseType": "Consumable",
+      "name": "Diamond1980",
+      "description": "Diamond1980",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d1980"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d1980"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d3280": {
+      "@id": "com.qianhuan.yxgsd.ios.d3280",
+      "@purchaseType": "Consumable",
+      "name": "Diamond3280",
+      "description": "Diamond3280",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d3280"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d3280"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.d6480": {
+      "@id": "com.qianhuan.yxgsd.ios.d6480",
+      "@purchaseType": "Consumable",
+      "name": "Diamond6480",
+      "description": "Diamond6480",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.d6480"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.d6480"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.m300": {
+      "@id": "com.qianhuan.yxgsd.ios.m300",
+      "@purchaseType": "Consumable",
+      "name": "Month300",
+      "description": "Month300",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.m300"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.m300"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    },
+    "com.qianhuan.yxgsd.ios.m980": {
+      "@id": "com.qianhuan.yxgsd.ios.m980",
+      "@purchaseType": "Consumable",
+      "name": "Month980",
+      "description": "Month980",
+      "downloadableContentId": null,
+      "platforms": {
+        "GooglePlay": {
+          "priceInLocalCurrency": 1.0,
+          "defaultLocale": "en_US"
+        },
+        "AmazonAppstore": {
+          "AmazonAppstore.Id": "com.qianhuan.yxgsd.ios.m980"
+        },
+        "SamsungApps": {},
+        "AppleAppStore": {
+          "appleAppStorePriceTier": 0,
+          "screenshotPath": "",
+          "AppleAppStore.Id": "com.qianhuan.yxgsd.ios.m980"
+        },
+        "MacAppStore": {},
+        "WindowsPhone8": {},
+        "Windows8_1": {},
+        "UnityEditor": {}
+      }
+    }
+  },
+  "currencies": {
+    "Diamond": {
+      "com.outlinegames.100goldcoins": 0.0,
+      "fightwar.orb_e": 60.0,
+      "com.qianhuan.yxgsd.ios.d10": 10.0,
+      "com.qianhuan.yxgsd.ios.d1980": 1980.0,
+      "com.qianhuan.yxgsd.ios.d60": 60.0,
+      "com.qianhuan.yxgsd.ios.d300": 300.0,
+      "com.qianhuan.yxgsd.ios.d980": 980.0,
+      "com.qianhuan.yxgsd.ios.d6480": 6480.0,
+      "com.qianhuan.yxgsd.ios.d3280": 3280.0,
+      "com.qianhuan.yxgsd.ios.m300": 300.0,
+      "com.qianhuan.yxgsd.ios.m980": 980.0
+    }
+  }
+}

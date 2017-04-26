@@ -1,0 +1,1157 @@
+--print("This is a script from a file GuideWindow")
+
+local IsFlash = false
+local IsFinish = false
+local IsClose = false
+local IsDouble = false
+local vect=Vector3(0,0,0)
+local Text0V3=Vector3(-192,0,0)
+local Text180V3=Vector3(192,0,0)
+
+function Start()
+	GameObject.Find("GuideWindow").transform.position=Vector3(500,500,500)
+end
+
+function GuideStation()	
+	IsDouble = false
+	local StateCount = PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+	local GuideSubState = PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+	--print(PlayerPrefs.GetString("ServerID").."DDDDDD"..PlayerPrefs.GetInt("UserID").."DDDDDDDDDDDDDDDD   "..GuideSubState.."     "..PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")));
+	--print("AAAAAAAAAAAAAA"..StateCount.." ".. GuideSubState)
+	if StateCount==0 then--第一场战斗			
+		if GuideSubState==0 then
+				--if GameObject.Find("GuideLegionWar")~=nil then
+					 LuaDeliver.AudioNewGuide("Story01")
+					 SetGuiderWindowInfo(1,"维嘉的邪恶力量已经笼罩了大半个世界......",2,"WJ","黑暗暴君 维嘉")
+				--else
+					--LuaDeliver.SetGuideDelay(0.1)
+				--end
+
+		elseif GuideSubState==1 then
+				if GameObject.Find("LoadingWindow")==nil then
+					if  GameObject.Find("MaxWindow")==nil then
+						LuaDeliver.AudioNewGuide("Story01")
+						SetGuiderWindowInfo(3,"维嘉的邪恶力量已经笼罩了大半个世界......",0,"","")
+					end
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==2 then
+				LuaDeliver.AudioNewGuide("Story02")
+				SetGuiderWindowInfo(1,"前面就是维嘉了，大家小心!",1,"ST","圣诞")
+		elseif GuideSubState==3 then
+				if  GameObject.Find("FightWindow")~=nil then
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddClick(GameObject.Find("AutoButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("AutoButton"),0)	
+					else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==4 then
+				SetGuiderWindowInfo(1,"果然是最狂妄的邪恶BOSS，大家加把劲，干掉[ff0000]维嘉军团[-]。世界就和平了。",1,"ST","圣诞")
+				if GameObject.Find("LabelWindow")~=nil and GameObject.Find("AutoButton")==nil then
+					LuaDeliver.AudioNewGuide("Story03")
+				end
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")
+		elseif GuideSubState==5 then	
+				LuaDeliver.AudioNewGuide("Story04");
+				AudioEditer.instance:PlayOneShot("alarm");
+				SetGuiderWindowInfo(6,"去死吧，让你们见识一下Shadoloo的力量！",0,"Victor","敌军指挥官")
+				--LuaDeliver.AddOnClick(GameObject.Find("TalkGuide"),"GuideClick")		
+		end	
+
+	elseif	StateCount==1 then	
+		if GuideSubState==1 then	
+				LuaDeliver.AudioNewGuide("Story05");	
+				SetGuiderWindowInfo(3,"单凭我们几个还不够强大",0,"","")
+				--LuaDeliver.AddClick(GameObject.Find("MaxWindowBg"),"GuideSubClick")
+		elseif GuideSubState==2 then	
+				LuaDeliver.AudioNewGuide("Story06");	
+				SetGuiderWindowInfo(1,"是的，长官，我是杰西卡，要打倒维嘉，必须建立一支最精锐的敢死队！请您先给敢死队取名。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==3 then		
+				--LuaDeliver.ClosePanel("NewGuideWindow")
+		end
+
+	elseif StateCount==2 then--第一关
+		if GuideSubState==0 then
+				if GameObject.Find("LoadingWindow")==nil then
+					AddGuideSubState()
+					LuaDeliver.AudioNewGuide("Story07");
+					SetGuiderWindowInfo(1,"长官,听说您要重建[d35818]"..CharacterRecorder.instance.characterName.."[-]敢死队，找回所有队员，正是我唯一的心愿，我们一起干吧。",1,"ST","圣诞")
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+	
+		elseif GuideSubState==1 then
+				if GameObject.Find("LoadingWindow")==nil then
+					LuaDeliver.AudioNewGuide("Story07");
+					SetGuiderWindowInfo(1,"长官,听说您要重建[d35818]"..CharacterRecorder.instance.characterName.."[-]敢死队，找回所有队员，正是我唯一的心愿，我们一起干吧。",1,"ST","圣诞")
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end	
+		elseif GuideSubState==2 then				
+				SetGuiderWindowInfo(0,"战斗",0,"","")				
+		elseif GuideSubState==3 then
+				LuaDeliver.AudioNewGuide("Story08");
+				SetGuiderWindowInfo(1,"很荣幸能回归敢死队，但我们还急需新的人手，我们赶快进行[d35818]招募[-]吧。",1,"ST","圣诞")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==4 then	
+				LuaDeliver.AudioNewGuide("Guide01")			
+				SetGuiderWindowInfo(5,"开始新兵招募吧。",1,"Lili","杰西卡")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("GachaButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("GachaButton"),0)	
+				LuaDeliver.AddLabelClick(Vector3(300,130,0));	
+		elseif GuideSubState==5 then		
+				if GameObject.Find("FGachaButton") ~= nil then
+					LuaDeliver.AudioNewGuide("Guide02")	
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddClick(GameObject.Find("FGachaButton"),"GuideSubClick")
+					SetClickButton(GameObject.Find("FGachaButton"),0.4)
+					SetGuiderWindowInfo(5,"每天有五次免费的[d35818]金币招募[-]哦。",1,"Lili","杰西卡")
+					LuaDeliver.AddLabelClick(Vector3(-50,0,0))		
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==6 then				
+				SetGuiderWindowInfo(0,"战斗",0,"","")		        
+		elseif GuideSubState==7 then		
+				if GameObject.Find("Exit") ~= nil then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("Exit"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("Exit"),0)	
+				else 
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==8 then				
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("BackButton"),0)	
+		end
+
+	elseif StateCount==3 then
+		if GuideSubState==0 then		
+				AddGuideSubState()
+				LuaDeliver.AudioNewGuide("Story09");
+				SetGuiderWindowInfo(1,"顺利完成招募，接下来我们拿敌人的小股部队来练练手。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==1 then	
+				LuaDeliver.AudioNewGuide("Story09");	
+				SetGuiderWindowInfo(1,"顺利完成招募，接下来我们拿敌人的小股部队来练练手。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")				
+		elseif GuideSubState==2 then		
+				LuaDeliver.AudioNewGuide("Story10");
+				SetGuiderWindowInfo(1,"我是博士，据我的情报，附近有一位强大的战士[ff0000]男枪[-]。可以与我们一同对抗[ff0000]维嘉军团[-]。",2,"Doctor","博士")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==3 then		
+				LuaDeliver.AudioNewGuide("Guide03")	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"让我们快出发吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))				
+		elseif GuideSubState==4 then	
+				if GameObject.Find("MapUiWindow")~=nil then
+					LuaDeliver.AudioNewGuide("Story11");	
+				end 
+				SetGuiderWindowInfo(1,"前面的兄弟，要打架就跟我们走！",1,"ST","圣诞")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==5 then		
+				LuaDeliver.AudioNewGuide("Story12");
+				SetGuiderWindowInfo(1,"那该死的维嘉，居然抢到老子地盘来了。",2,"glfs","男枪")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==6 then	
+				LuaDeliver.AudioNewGuide("Story13");	
+				SetGuiderWindowInfo(1,"我们敢死队就是为了推翻[ff0000]维嘉军团[-]建立的，要不要来随你。",1,"ST","圣诞")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==7 then
+				LuaDeliver.AudioNewGuide("Story14");
+				SetGuiderWindowInfo(1,"想要我加入就要看你们有没有这本事了。",2,"glfs","男枪")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==8 then		
+				LuaDeliver.AudioNewGuide("Story15");
+				SetGuiderWindowInfo(1,"长官！发现联盟军落单的士兵！",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==9 then	
+				LuaDeliver.AudioNewGuide("Guide04")						
+				SetGuiderWindowInfo(5,"让我们开始清扫据点吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(-70,0,0));		
+				SetButtonLoaclPosition(Vector3(-443,4,0))
+				SetArrow(Vector3(-443,4,0),0)				        		        
+		elseif GuideSubState==10 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddClick(GameObject.Find("StartButton"),"GuideSubClick")
+				SetClickButton(GameObject.Find("StartButton"),0.4)	
+		elseif GuideSubState==11 then
+				if GameObject.Find("LoadingWindow")==nil then
+					LuaDeliver.AudioNewGuide("Story16");
+					SetGuiderWindowInfo(1,"那些[ff0000]维嘉军团[-]的小喽啰，我一枪打死一大片！",2,"glfs","男枪")
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==12 then		
+				LuaDeliver.AudioNewGuide("Story17");
+				SetGuiderWindowInfo(1,"长官，一会给男枪设置队长，帮他额外增加能量，看他的表演吧。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==13 then	
+				LuaDeliver.AudioNewGuide("Guide05")		
+				SetGuiderWindowInfo(7,"请[d35818]拖动[-]英雄上阵吧。",1,"Lili","杰西卡")
+				IsFlash = true				
+				LuaDeliver.AddLabelClick(Vector3(0,-300,0));	
+				LuaDeliver.AddArrowMove(Vector3(-340,-340,0), Vector3(-140,50,0));	
+		elseif GuideSubState==14 then	
+				LuaDeliver.AudioNewGuide("Guide06")	
+				SetGuiderWindowInfo(5,"设置[D35818]队长[-]能让怒气能得到特别的提升，怒气有利于释放[D35818]大招[-]",1,"Lili","杰西卡")
+				IsFlash = true				
+				SetButtonLoaclPosition(Vector3(-155,140,0))
+				SetArrow(Vector3(-155,140,0))	
+				LuaDeliver.AddLabelClick(Vector3(160,0,0));
+		elseif GuideSubState==15 then
+				LuaDeliver.AudioNewGuide("Guide07")	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddClick(GameObject.Find("AutoButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("AutoButton"),0)	
+				SetGuiderWindowInfo(5,"点击开始战斗吧！",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0));	
+		end
+	
+
+	elseif StateCount==4 then
+		if GuideSubState==0 then
+			AddGuideSubState()
+			AddGuideSubState()
+			AddGuideSubState()
+			LuaDeliver.AudioNewGuide("Story18");
+			SetGuiderWindowInfo(1,"喂！那位妹子，你能不能不要那么严肃，我加入就是，这是看你的面子啊，哈哈。",1,"glfs","男枪")
+		elseif GuideSubState==1 then
+				if GameObject.Find("ResultWindow/BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+					SetClickButton(GameObject.Find("BackButton"),0)	
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==2 then	
+				LuaDeliver.AudioNewGuide("Story18");	
+				SetGuiderWindowInfo(1,"喂！那位妹子，你能不能不要那么严肃，我加入就是，这是看你的面子啊，哈哈。",1,"glfs","男枪")
+		elseif GuideSubState==3 then
+				if GameObject.Find("BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					SetClickButton(GameObject.Find("BackButton"),0)	
+				else 
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==4 then			
+				LuaDeliver.AudioNewGuide("Guide08")		
+				SetGuiderWindowInfo(5,"我们继续[D35818]招募[-]队员吧。",1,"Lili","杰西卡")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("GachaButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("GachaButton"),0)	
+				LuaDeliver.AddLabelClick(Vector3(300,130,0));	
+		elseif GuideSubState==5 then		
+				if GameObject.Find("GFGachaButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddClick(GameObject.Find("GFGachaButton"),"GuideSubClick")
+					SetClickButton(GameObject.Find("GFGachaButton"),0.4)	
+
+					SetGuiderWindowInfo(5,"每天有一次免费的[d35818]钻石招募[-]哦。",1,"Lili","杰西卡")
+					LuaDeliver.AddLabelClick(Vector3(50,-100,0))		
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==6 then				
+				SetGuiderWindowInfo(0,"战斗",0,"","")		        
+		elseif GuideSubState==7 then				
+				if GameObject.Find("Exit") ~= nil then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        SetClickButton(GameObject.Find("Exit"),0)	
+				else 
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		elseif GuideSubState==8 then				
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("BackButton"),0)	
+		elseif GuideSubState==9 then	
+				LuaDeliver.AudioNewGuide("Guide09")				
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"男枪正式加入，快来试试他的威力。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))				
+		end
+
+	elseif StateCount==5 then
+		if GuideSubState==0 then
+				--[[LuaDeliver.AudioNewGuide("Guide09")	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		       --LuaDeliver.AddChangeClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"男枪正式加入，快来试试他的威力。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))]]			
+		elseif GuideSubState==1 then				
+				--[[if GameObject.Find("AllSatrBox") ~= nil then
+					LuaDeliver.AudioNewGuide("Guide10")	
+					SetGuiderWindowInfo(5,"请点击上一场战役的[D35818]评星奖励[-]。",1,"Lili","杰西卡")
+					--LuaDeliver.AddClick(GameObject.Find("AllSatrBox"),"GuideSubClick")
+					SetClickButton(GameObject.Find("AllSatrBox"),0.4)
+					LuaDeliver.AddLabelClick(Vector3(0,0,0))
+				else
+					SetGuiderWindowInfo(0,"战斗",0,"","") 
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+				]]
+		elseif GuideSubState==2 then
+				if GameObject.Find("MapUiWindow")~=nil then
+				LuaDeliver.AudioNewGuide("Guide11")	
+				end
+				SetGuiderWindowInfo(5,"完成据点清扫还有[D35818]通关奖励[-]哦。",1,"Lili","杰西卡")
+		        SetButtonLoaclPosition(Vector3(-318,-20,0))
+				SetArrow(Vector3(-318,-20,0),0)		
+				LuaDeliver.AddLabelClick(Vector3(-58,0,0))
+		end
+
+	elseif StateCount==6 then  --第二关
+		if GuideSubState==0 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		       -- LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)	
+		elseif GuideSubState==1 then		
+				if GameObject.Find("MapUiWindow")~=nil then
+					LuaDeliver.AudioNewGuide("Story19")
+				end
+				SetGuiderWindowInfo(1,"每个据点全三星通关都可以额外获得宝箱，请长官多加注意。",2,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==2 then	
+				LuaDeliver.AudioNewGuide("Story20");
+				SetGuiderWindowInfo(1,"我们走我们走～我的子弹已经饥渴难耐了。",1,"glfs","男枪")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")				
+		elseif GuideSubState==3 then
+				LuaDeliver.AudioNewGuide("Story21");		
+				SetGuiderWindowInfo(1,"长官，前方发现又发现[ff0000]维嘉军团[-]的小喽啰。",2,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==4 then	
+				LuaDeliver.AudioNewGuide("Guide12")	
+				SetGuiderWindowInfo(5,"开始第二个据点的清扫吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(-70,0,0));		
+				SetButtonLoaclPosition(Vector3(-443,4,0))
+				SetArrow(Vector3(-443,4,0),0)	
+		elseif GuideSubState==5 then
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddChangeClick(GameObject.Find("StartButton"),"GuideSubClick")
+				SetClickButton(GameObject.Find("StartButton"),0.4)	
+		elseif GuideSubState==6 then	
+			   if GameObject.Find("LoadingWindow")==nil then	
+					LuaDeliver.AudioNewGuide("Guide14")	
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					SetClickButton(GameObject.Find("AutoButton"),0)	
+					SetGuiderWindowInfo(5,"万事俱备，开战吧。",1,"Lili","杰西卡")
+					LuaDeliver.AddLabelClick(Vector3(200,-200,0));	
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==7 then	
+
+		elseif GuideSubState==8 then
+				if GameObject.Find("LoadingWindow")==nil then
+					LuaDeliver.AudioNewGuide("Story22");
+					SetGuiderWindowInfo(1,"长官，在普通战役中，您随时可以对英雄进行位置调整。",1,"Doctor","博士")
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==9 then
+				if PictureCreater.instance.IsLock==true  then
+					LuaDeliver.AudioNewGuide("Guide13")	
+					SetGuiderWindowInfo(7,"请调整您的[D35818]英雄位置[-]。",1,"Lili","杰西卡")
+					IsFlash = true		
+					LuaDeliver.AddLabelClick(Vector3(40,-10,0));
+					if UIRootExtend.instance.isUiRootRatio~=1 then 
+						LuaDeliver.AddArrowMove(Vector3(-140*UIRootExtend.instance.isUiRootRatio ,50*UIRootExtend.instance.isUiRootRatio ,0), Vector3(-520,-56,0));	
+					else 
+						LuaDeliver.AddArrowMove(Vector3(-180,50 ,0), Vector3(-520,-56,0));	
+					end
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+				 
+--[[		elseif GuideSubState==9 then	
+				SetGuiderWindowInfo(2,"战斗",0,"","")		
+				SetButtonLoaclPosition(Vector3(-270,50,0))
+				SetArrow(Vector3(-270,50,0),0)	]]--
+		end
+
+	elseif StateCount==7 then
+		if GuideSubState==0 then
+		elseif GuideSubState==1 then
+				if GameObject.Find("ResultWindow/BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+					SetClickButton(GameObject.Find("BackButton"),0.1)	
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		end
+
+	elseif StateCount==8 then
+		if GuideSubState==0 then
+		elseif GuideSubState==1 then
+				LuaDeliver.AudioNewGuide("Story23");
+				SetGuiderWindowInfo(1,"长官，发现联盟军仓库的强化物资，正好可以用来强化士兵，请让我为您进行引导。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==2 then
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideSubClick")
+				SetClickButton(GameObject.Find("BackButton"),0)	
+		end
+	
+	elseif StateCount==9 then --英雄升品
+		if GuideSubState==0 then
+				AddGuideSubState()
+				LuaDeliver.AudioNewGuide("Story24");
+		        SetGuiderWindowInfo(1,"对士兵的强化操作都集中在[d35818]“英雄”[-]按钮，请点击右方英雄按钮。",1,"Lili","杰西卡")
+		elseif GuideSubState==1 then
+				LuaDeliver.AudioNewGuide("Story24");
+				SetGuiderWindowInfo(1,"对士兵的强化操作都集中在[d35818]“英雄”[-]按钮，请点击右方英雄按钮。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==2 then
+				LuaDeliver.AudioNewGuide("Guide15")	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("RoleButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("RoleButton"),0)	
+				SetGuiderWindowInfo(5,"首先打开英雄界面。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(300,100,0))
+		elseif GuideSubState==3 then	
+				if GameObject.Find("HeroItem60016") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddClick(GameObject.Find("HeroItem60016"),"GuideSubClick")
+					SetClickButton(GameObject.Find("HeroItem60016"),0.4)	
+				else 			 
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+		elseif GuideSubState==4 then
+				LuaDeliver.AudioNewGuide("Guide16")	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddChangeClick(GameObject.Find("SpriteTab4"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("SpriteTab4"),0)	
+				SetGuiderWindowInfo(5,"让我们前往英雄升品界面。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-50,0))
+		elseif GuideSubState==5 then
+				if GameObject.Find("UPbutton") ~= nil then
+					LuaDeliver.AudioNewGuide("Guide17")	
+					SetGuiderWindowInfo(5,"英雄的[D35818]升品[-]可以全面提升[D35818]属性[-]。",1,"Lili","杰西卡")
+					--LuaDeliver.AddClick(GameObject.Find("UPbutton"),"GuideSubClick")
+					SetClickButton(GameObject.Find("UPbutton"),0)	
+					LuaDeliver.AddLabelClick(Vector3(300,-200,0));
+				else 				 
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+		elseif GuideSubState==6 then
+				LuaDeliver.AudioNewGuide("Story25");
+				SetGuiderWindowInfo(1,"达成！请记得在获得强化物资后回来进行升品操作，可以极大的增强敢死队战斗力。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==7 then
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		        --LuaDeliver.AddClick(GameObject.Find("BackButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("BackButton"),0)	
+		end
+  elseif StateCount==10 then  --第三关
+		if GuideSubState==0 then	
+				AddGuideSubState()
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				LuaDeliver.AudioNewGuide("Guide18")	
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)		
+				SetGuiderWindowInfo(5,"让我们继续任务吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))	
+		elseif GuideSubState==1 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				LuaDeliver.AudioNewGuide("Guide18")	
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		       	SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"让我们继续任务吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))	
+		elseif GuideSubState==2 then
+				if GameObject.Find("MapUiWindow")~=nil then
+					LuaDeliver.AudioNewGuide("Guide19")			
+				end
+				SetGuiderWindowInfo(5,"有些据点有分几个分支，全清扫完才算完成占领。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(-70,0,0));		
+				SetButtonLoaclPosition(Vector3(-443,4,0))
+				SetArrow(Vector3(-443,4,0),0)				
+		elseif GuideSubState==3 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		      	--LuaDeliver.AddChangeClick(GameObject.Find("StartButton"),"GuideSubClick")
+		       	SetClickButton(GameObject.Find("StartButton"),0.4)
+		elseif GuideSubState==4 then	
+				if GameObject.Find("LoadingWindow")==nil then
+					LuaDeliver.AudioNewGuide("Guide20")	
+					SetGuiderWindowInfo(4,"英雄头上的数字，表示[d35818]行动顺序[-]，开战前请仔细确认。",1,"Lili","杰西卡")
+					LuaDeliver.AddLabelClick(Vector3(0,-200,0));
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+
+		elseif GuideSubState==5 then						
+				--SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddClick(GameObject.Find("AutoButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("AutoButton"),0)					
+				SetGuiderWindowInfo(5,"注意[d35818]兵种相克[-]，战斗无往不利，开战吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(300,100,0))
+		end
+
+	elseif StateCount==11 then
+		if GuideSubState==0 then
+		elseif GuideSubState==1 then
+				if GameObject.Find("ResultWindow/BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+					SetClickButton(GameObject.Find("BackButton"),0.1)	
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		end
+
+	elseif StateCount==12 then  --第三关2
+		if GuideSubState==0 then	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddChangeClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)	
+		elseif GuideSubState==1 then	
+				if GameObject.Find("MapUiWindow")~=nil then
+					LuaDeliver.AudioNewGuide("Story26")
+				end
+				SetGuiderWindowInfo(1,"长官！大事不好了！\n维嘉军把我们的军医妹子俘虏了！我们赶紧去营救！",1,"ST","圣诞")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==2 then	
+				LuaDeliver.AudioNewGuide("Guide21");	
+				SetGuiderWindowInfo(1,"击败威斯克,救出我们的军医",2,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")				
+		elseif GuideSubState==3 then		
+				if GameObject.Find("StartButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddChangeClick(GameObject.Find("StartButton"),"GuideSubClick")
+					SetClickButton(GameObject.Find("StartButton"),0.4)		
+				else
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+		elseif GuideSubState==4 then	
+				if GameObject.Find("LoadingWindow")==nil then
+					LuaDeliver.AudioNewGuide("Story27");	
+					SetGuiderWindowInfo(1,"我地雷阵等你们已经很久了，看我把你们敢死队变成找死队！哈哈哈哈。",1,"WSG","威斯克")
+				else
+					LuaDeliver.SetGuideDelay(0.1)
+				end
+		elseif GuideSubState==5 then
+				LuaDeliver.AudioNewGuide("Story29");	
+				SetGuiderWindowInfo(1,"男枪你这叛徒，今天连你一块收拾了。",1,"WSG","威斯克")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==6 then	
+				LuaDeliver.AudioNewGuide("Story28");					
+				SetGuiderWindowInfo(1,"少废话，快给老子放人！",2,"glfs","男枪")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==7 then						
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		      	--LuaDeliver.AddClick(GameObject.Find("AutoButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("AutoButton"),0)				
+		elseif GuideSubState==8 then	
+				LuaDeliver.AudioNewGuide("Story30");
+				SetGuiderWindowInfo(1,"就让你们见识真正的力量！",1,"WSG","威斯克")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")
+		elseif GuideSubState==9 then	
+				LuaDeliver.AudioNewGuide("Story31");	
+				SetGuiderWindowInfo(1,"刺激啊，关灯喽！关灯喽！",2,"glfs","男枪")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")
+		elseif GuideSubState==10 then		
+				LuaDeliver.AudioNewGuide("Story32");
+				SetGuiderWindowInfo(1,"长官，您的[d35818]战术技能[-]已经升级完毕！请让我来为您介绍使用方法。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==11 then
+				if GameObject.Find("SkillButton1") ~= nil then
+				LuaDeliver.AudioNewGuide("Guide22")	
+				SetGuiderWindowInfo(5,"点击战术[D35818]手榴弹[-]",1,"Lili","杰西卡")
+		        --LuaDeliver.AddClick(GameObject.Find("SkillButton1"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("SkillButton1"),0)	
+				LuaDeliver.AddLabelClick(Vector3(0,-130,0));	
+				else
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+		elseif GuideSubState==12 then		
+				SetGuiderWindowInfo(5,"然后释放到战场中",1,"Lili","杰西卡")
+				LuaDeliver.AudioNewGuide("Guide23")	
+		        SetButtonLoaclPosition(Vector3(0,40,0))
+				SetArrow(Vector3(0,40,0),0)			
+				LuaDeliver.AddLabelClick(Vector3(400,130,0));			
+		end
+
+	elseif StateCount==13 then	
+		if GuideSubState==0 then
+		elseif GuideSubState==1 then
+				if GameObject.Find("ResultWindow/BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+					SetClickButton(GameObject.Find("BackButton"),0.1)	
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		end
+	elseif StateCount==14 then	--3-2返回主界面
+		if GuideSubState==0 then	
+		elseif GuideSubState==1 then		
+				if GameObject.Find("BackButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					--LuaDeliver.AddClick(GameObject.Find("BackButton"),"GuideClick")
+					SetClickButton(GameObject.Find("BackButton"),0.1)	
+				else 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end	
+		end
+	
+	elseif StateCount==15 then  --合成医生
+		if GuideSubState==0 then	
+				AddGuideSubState()	
+				LuaDeliver.AudioNewGuide("Story33");
+				SetGuiderWindowInfo(1,"报告长官！已经顺利解救出茱莉亚！接下来我会指引您进行[d35818]英雄碎片合成[-]的操作。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")				
+		elseif GuideSubState==1 then	
+				LuaDeliver.AudioNewGuide("Story33");
+				SetGuiderWindowInfo(1,"报告长官！已经顺利解救出茱莉亚！接下来我会指引您进行碎片[d35818]合成[-]的操作。",1,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")
+		elseif GuideSubState==2 then		
+				if GameObject.Find("BagButton") ~= nil then
+					SetGuiderWindowInfo(2,"战斗",0,"","")
+					LuaDeliver.AudioNewGuide("Guide24")	
+					--LuaDeliver.AddChangeClick(GameObject.Find("BagButton"),"GuideSubClick")
+					SetClickButton(GameObject.Find("BagButton"),0)	
+					SetGuiderWindowInfo(5,"点开背包能查看所有道具！",1,"Lili","杰西卡")
+					LuaDeliver.AddLabelClick(Vector3(300,-50,0))	
+				else 				 
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+		elseif GuideSubState==3 then	
+				LuaDeliver.AudioNewGuide("Guide25")		
+				SetGuiderWindowInfo(5,"所有需要合成的碎片都在这",1,"Lili","杰西卡")
+		        SetButtonLoaclPosition(Vector3(-470,-100,0))
+				SetArrow(Vector3(-470,-100,0),0)	
+				LuaDeliver.AddLabelClick(Vector3(-150,-80,0));
+		elseif GuideSubState==4 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")	
+				LuaDeliver.AudioNewGuide("Guide26")				
+		        --LuaDeliver.AddClick(GameObject.Find("CombineButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("CombineButton"),0)	
+				SetGuiderWindowInfo(5,"碎片满了就能[D35818]合成[-]英雄",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(50,-300,0))
+		elseif GuideSubState==5 then				
+				SetGuiderWindowInfo(0,"战斗",0,"","")		
+		elseif GuideSubState==6 then	
+				LuaDeliver.AudioNewGuide("Story34");	
+				SetGuiderWindowInfo(1,"幸亏你们来的及时，在牢里我隐约听到他们的计划，我现在很累，有机会再跟你们说吧。",1,"juliya","茱莉亚")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==7 then	
+				LuaDeliver.AudioNewGuide("Story35");	
+				SetGuiderWindowInfo(1,"长官，正义战士“阴阳”在附近修炼，我们去邀请他加入我们。",2,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")	
+		elseif GuideSubState==8 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddChangeClick(GameObject.Find("BackButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("BackButton"),0)	
+		end		
+		
+	elseif StateCount==16 then  --第四关战斗
+		if GuideSubState==0 then	
+				AddGuideSubState()
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				LuaDeliver.AudioNewGuide("Guide27")	
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"赶快去找阴阳吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))					
+		elseif GuideSubState==1 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				LuaDeliver.AudioNewGuide("Guide27")	
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)
+				SetGuiderWindowInfo(5,"赶快去找阴阳吧。",1,"Lili","杰西卡")
+				LuaDeliver.AddLabelClick(Vector3(200,-200,0))			
+		elseif GuideSubState==2 then
+				if GameObject.Find("MapUiWindow")~=nil then
+					LuaDeliver.AudioNewGuide("Story36")
+					SetGuiderWindowInfo(1,"已取得前方区域卫星地图，打开雷达就可以[d35818]解除迷雾[-]了!",1,"Lili","杰西卡")
+				else
+					SetGuiderWindowInfo(0,"战斗",0,"","")
+					LuaDeliver.SetGuideDelay(0.1);
+				end
+
+
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")							
+		elseif GuideSubState==3 then	
+				LuaDeliver.AudioNewGuide("Story37");	
+				SetGuiderWindowInfo(1,"胜利在望！只要打开雷达我们就能找到我们的目标——[d35818]芯片[-]。",2,"Doctor","博士")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")							
+		elseif GuideSubState==4 then	
+				LuaDeliver.AudioNewGuide("Guide28")		
+				SetGuiderWindowInfo(5,"点击开启雷达",1,"Lili","杰西卡")
+		        SetButtonLoaclPosition(Vector3(-300,-100,0))
+				SetArrow(Vector3(-300,-100,0), 0)	
+				LuaDeliver.AddLabelClick(Vector3(30,-50,0));	
+
+		end
+
+	elseif StateCount==17 then
+		if GuideSubState==0 then	
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+				--LuaDeliver.AddClick(GameObject.Find("WorldButton"),"GuideSubClick")
+		        SetClickButton(GameObject.Find("WorldButton"),0)		
+		elseif GuideSubState==1 then
+				if GameObject.Find("AdvanceWindow")==nil then
+					LuaDeliver.AudioNewGuide("Story38")
+				end
+				SceneTransformer.instance:ShowXinPian()
+				SetGuiderWindowInfo(1,"干得漂亮！芯片十分重要，它能大幅提升敢死队的战斗力。",1,"Doctor","博士")
+		elseif GuideSubState==2 then	
+				LuaDeliver.AudioNewGuide("Story39");	
+				SetGuiderWindowInfo(1,"我们的首要目标就是[d35818]解开所有雷达[-]，找到全部芯片。",2,"Lili","杰西卡")
+				--LuaDeliver.AddOnClick(GameObject.Find("BigGuide"),"GuideSubClick")		
+		elseif GuideSubState==3 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")	
+				SetButtonLoaclPosition(Vector3(-438,-4,0))
+				SetArrow(Vector3(-438,-4,0),0)				
+		elseif GuideSubState==4 then		
+				SetGuiderWindowInfo(2,"战斗",0,"","")
+		       --LuaDeliver.AddChangeClick(GameObject.Find("StartButton"),"GuideClick")
+		        SetClickButton(GameObject.Find("StartButton"),0.4)		
+		end	
+	end	    
+end
+
+
+function GuideClick(go)
+	local GuideSubState = PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+	if PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 4 then
+			LuaDeliver.GuideIsLock()	
+	end
+	if SceneTransformer.IsDoubleClick == false then
+		--SceneTransformer.IsDoubleClick = true
+		print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@11!!!!callback sucess!!!!"..go.name)
+		AddGuideState()
+		if IsFinish == true then
+			PlayerPrefs.SetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"), -1)
+		end
+		if (PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==0) and GuideSubState==0 then 
+			--GuideStation()
+		else	
+			LuaDeliver.ClosePanel("NewGuideWindow")
+		end
+		
+		print(PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")).."    ^^^^^^^^^^^^^^^")
+	end
+end
+
+function GuideSubClick(go)
+	if SceneTransformer.IsDoubleClick == false then
+		--SceneTransformer.IsDoubleClick = true
+		print(go)
+		local GuideSubState = PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+
+		if  PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 12 and GuideSubState == 30 then
+		else
+			AddGuideSubState()
+		end
+		
+		GuideSubState = PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+		print(GuideSubState.."   &&&**&&*&*&*&*")
+		if  PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 1 then
+			
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 2 then
+		    GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 3 then
+			SetGuiderWindowInfo(0,"",0,"","")
+	    elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 4 then
+            GuideStation()  
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 5 then
+            GuideStation()  
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 6 then
+            GuideStation()  
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 0 and GuideSubState == 7 then
+            GuideStation()  
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==1 and GuideSubState==2 then 						
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) == 1 and GuideSubState == 3 then
+            --LuaDeliver.OpenPanel("StartNameWindow", true);  
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==1 then 
+			GuideStation()		
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==2 then 
+			GuideStation()		
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==6 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==1 then 
+			GuideStation()		
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==2 then 
+			GuideStation()		
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==6 then 
+			--GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==7 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==8 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==9 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==10 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==11 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==12 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==13 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==14 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==15 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==16 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==17 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==18 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==19 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==20 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==21 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==22 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==6 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==7 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==8 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==9 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==10 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==11 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==12 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==13 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==14 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==15 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==16 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==6 and GuideSubState==17 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==8 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==8 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==8 and GuideSubState==3 then 
+			GuideStation()
+
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==6 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==7 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==8 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==9 and GuideSubState==9 then 
+			GuideStation()
+
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==10 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==10 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==10 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==10 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==10 and GuideSubState==5 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==6 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==7 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==8 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==9 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==10 then 
+			GuideStation()	
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==11 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==12 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==13 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==14 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==15 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==16 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==17 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==18 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==19 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==20 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==21 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==12 and GuideSubState==22 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==6 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==7 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==8 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==9 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==10 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==11 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==12 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==15 and GuideSubState==13 then 
+			GuideStation()
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==16 and GuideSubState==6 then 
+			GuideStation()
+
+
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==0 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==1 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==2 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==3 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==4 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==5 then 
+			GuideStation()
+		elseif PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==17 and GuideSubState==6 then 
+			GuideStation()
+
+		end
+		print(GuideSubState)
+	end
+end
+
+function GuideSubPress(go, ispress)
+	local GuideSubState = PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))
+	print(ispress)
+	print("$$$$$$$555$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!callback sucess!!!!")
+	if ispress ==true then		
+		print(PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")).."      "..GuideSubState)
+		if PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==18 then 
+			SetButtonLoaclPosition(Vector3(-140,50,0))
+			SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)			
+		elseif (PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==3) and GuideSubState==3 then 
+			SetButtonLoaclPosition(Vector3(-270,60,0))
+			SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)			
+		elseif (PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==4 and GuideSubState==3) and GuideSubState==3 then 
+			LuaDeliver.SetGuideChildActive(PictureCreater.instance.MyPositions,"Position8",false)
+			SetButtonLoaclPosition(Vector3(-252,-119,0))
+			SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)		
+		end
+		
+	end
+	if ispress == false then		
+		if PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==3 and GuideSubState==18 then 				
+			if (GameObject.Find("Role60016").transform.localPosition.z<3.52 and GameObject.Find("Role60016").transform.localPosition.z>-3.52)and GameObject.Find("Role60016").transform.localPosition.z>-3.52 then			
+				if (GameObject.Find("Role60016").transform.localPosition.x<-1.3 and GameObject.Find("Role60016").transform.localPosition.x>-8.9)and GameObject.Find("Role60016").transform.localPosition.x>-7.9 then
+					AddGuideSubState()
+					print(GuideSubState)	
+					print("$$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!callback sucess!!!!"..go.name)
+				
+					if IsFlash == true then
+						IsFlash=false
+						GuideStation()
+					end
+				else
+					print(vect)
+			
+					SetClickButton(GameObject.Find("60016"),0.1)	
+					SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)					
+				end	
+			else
+				SetClickButton(GameObject.Find("60016"),0.1)	
+				SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)				
+			end
+		end
+
+		if PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==5 and GuideSubState==11 then 				
+			if (GameObject.Find("Role60032").transform.localPosition.z<3.52 and GameObject.Find("Role60032").transform.localPosition.z>-3.52)and GameObject.Find("Role60032").transform.localPosition.z>-3.52 then			
+				if (GameObject.Find("Role60032").transform.localPosition.x<-1.3 and GameObject.Find("Role60032").transform.localPosition.x>-8.9)and GameObject.Find("Role60032").transform.localPosition.x>-7.9 then
+					AddGuideSubState()
+					print(GuideSubState)	
+					print("$$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!callback sucess!!!!"..go.name)
+				
+					if IsFlash == true then
+						IsFlash=false
+						GuideStation()
+					end				
+				end	
+			end
+		end
+
+
+		if (PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==2 and GuideSubState==3) and GuideSubState==3 then 
+			if (GameObject.Find("Role60032").transform.localPosition.z<1.52 and GameObject.Find("Role60032").transform.localPosition.z>-1.52)and GameObject.Find("Role60032").transform.localPosition.z>-1.52 then
+				if (GameObject.Find("Role60032").transform.localPosition.x<-0.9 and GameObject.Find("Role60032").transform.localPosition.x>-3.96)and GameObject.Find("Role60032").transform.localPosition.x>-3.96 then
+					AddGuideSubState()
+					print(GuideSubState)	
+					print("$$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!callback sucess!!!!"..go.name)
+				
+					if IsFlash == true then
+						IsFlash=false
+						GuideStation()
+					end
+				else
+					print(vect)
+			
+					SetButtonPosition(GameObject.Find("60032").transform.position)
+					SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)
+					SetGuiderLocalPosition(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x+334,-150,0),Vector3(0,0,0),Text0V3)
+				end
+			else
+				SetButtonPosition(GameObject.Find("60032").transform.position)
+				SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)
+				SetGuiderLocalPosition(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x+334,-150,0),Vector3(0,0,0),Text0V3)
+			end
+
+		end
+
+		if (PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))==4 and GuideSubState==3) and GuideSubState==3 then 
+			if (GameObject.Find("Role60006").transform.localPosition.z<0.78 and GameObject.Find("Role60006").transform.localPosition.z>-3.31)and GameObject.Find("Role60006").transform.localPosition.z>-3.31 then
+				if (GameObject.Find("Role60006").transform.localPosition.x<-2.25 and GameObject.Find("Role60006").transform.localPosition.x>-4.96)and GameObject.Find("Role60006").transform.localPosition.x>-4.96 then
+					AddGuideSubState()
+					print(GuideSubState)	
+					print("$$$$$$$$$$$@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@!!!!callback sucess!!!!"..go.name)
+				
+					if IsFlash == true then
+						IsFlash=false
+						GuideStation()
+					end
+				else
+					print(vect)
+			
+					SetButtonPosition(GameObject.Find("60006").transform.position)
+					SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)
+					SetGuiderLocalPosition(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x+334,-150,0),Vector3(0,0,0),Text0V3)
+				end
+			else
+				SetButtonPosition(GameObject.Find("60006").transform.position)
+				SetArrow(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x,GameObject.Find("GuideButtonPoint").transform.localPosition.y,GameObject.Find("GuideButtonPoint").transform.localPosition.z),0)
+				SetGuiderLocalPosition(Vector3(GameObject.Find("GuideButtonPoint").transform.localPosition.x+334,-150,0),Vector3(0,0,0),Text0V3)
+			end
+
+		end
+	end
+end
+
+
+function AddGuideState()	
+	PlayerPrefs.SetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"), PlayerPrefs.GetInt("GuideState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")) + 1)
+	PlayerPrefs.SetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"),1)
+	print(PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")).."    ()()()()")
+end
+
+function AddGuideSubState()	
+	PlayerPrefs.SetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"),PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID"))+1)	
+	print(PlayerPrefs.GetInt("GuideSubState_"..PlayerPrefs.GetString("ServerID").."_"..PlayerPrefs.GetInt("UserID")).."  ()()$$$$#####^^^^^")
+end
+function  SetGuiderWindowInfo(Type,GuildLabel,LeftRight,Icon,name)
+    local  GuiderWindow =	GameObject.Find("NewGuideWindow"):GetComponent("NewGuidWindow")
+    GuiderWindow:SetInfo(Type,GuildLabel,LeftRight,Icon,name)
+end
+function GuideUpdate()
+	
+end

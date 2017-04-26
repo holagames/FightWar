@@ -1,0 +1,11 @@
+idle:0-40
+skill:290-360
+attack:90-132
+run:260-276
+hurt:170-190
+dead:210-257
+
+
+ani2
+fulu_idle:0-40
+fulu_run:50-74

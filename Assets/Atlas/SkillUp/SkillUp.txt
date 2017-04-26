@@ -1,0 +1,36 @@
+{"frames": {
+
+"nao_paopao_000.png":
+{
+	"frame": {"x":604,"y":2,"w":299,"h":232},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":299,"h":232},
+	"sourceSize": {"w":309,"h":240}
+},
+"nao_paopao_002.png":
+{
+	"frame": {"x":2,"y":2,"w":299,"h":236},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":4,"w":299,"h":236},
+	"sourceSize": {"w":309,"h":240}
+},
+"nao_paopao_004.png":
+{
+	"frame": {"x":303,"y":2,"w":299,"h":232},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":299,"h":232},
+	"sourceSize": {"w":309,"h":240}
+}},
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "SkillUp.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":256},
+	"scale": "0.9375",
+	"smartupdate": "$TexturePacker:SmartUpdate:28e7dcf1ad4bec611d9fa52f6f5e11c3$"
+}
+}

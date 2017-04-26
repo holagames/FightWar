@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFFFF"
+    android:orientation="vertical" >
+    
+    <TextView
+        android:id="@+id/info_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    
+     <TextView
+        android:id="@+id/info_exp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+     
+      <TextView
+        android:id="@+id/info_scores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:textColor="#000"
+        android:textSize="16sp"
+        android:text="Scores:"
+        android:textStyle="bold"/>
+      
+       <View
+        android:layout_width="fill_parent"
+        android:layout_height="0.66dp"
+        android:background="#FF000000" />
+    
+	<ListView
+		android:id="@android:id/list"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent" />
+</LinearLayout>

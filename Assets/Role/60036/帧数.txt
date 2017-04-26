@@ -1,0 +1,7 @@
+stand	3-43
+walk	46-64
+attack1	72-112
+attack2	115-182
+hurt1	183-203
+stun	214-254
+die1    267-317
